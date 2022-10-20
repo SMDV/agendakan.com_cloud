@@ -143,13 +143,14 @@ class GKM_API {
     return responseJson;
   }
 
-  Future<dynamic> get3(String token) async {
+  Future<dynamic> get3(String token, String keyword) async {
     var responseJson;
     const test = "";
     String jsonString = jsonEncode(test);
     print(jsonString);
     try {
-      var url_uri = Uri.parse(_baseUrl + "/api/all-pembelian"); // ->
+      var url_uri =
+          Uri.parse(_baseUrl + "/api/" + keyword + "-pembelian"); // ->
 
       final response = await http.get(
         url_uri,
@@ -283,6 +284,52 @@ class GKM_API {
     }
     // html.AnchorElement anchorElement =
     //     new html.AnchorElement(href: responseJson['']);
+    return responseJson;
+  }
+
+  Future<dynamic> get11(String token) async {
+    var responseJson;
+    const test = "";
+    String jsonString = jsonEncode(test);
+    print(jsonString);
+    try {
+      var url_uri = Uri.parse(_baseUrl + "/api/success-pembelian"); // ->
+
+      final response = await http.get(
+        url_uri,
+        headers: <String, String>{
+          "Content-Type": "application/json; charset=UTF-8",
+          "Authorization": "Bearer " + token,
+        },
+      );
+      //final response = await http.get(url_uri);
+      responseJson = _response(response);
+    } on SocketException {
+      throw Exception();
+    }
+    return responseJson;
+  }
+
+  Future<dynamic> get12(String token) async {
+    var responseJson;
+    const test = "";
+    String jsonString = jsonEncode(test);
+    print(jsonString);
+    try {
+      var url_uri = Uri.parse(_baseUrl + "/api/failed-pembelian"); // ->
+
+      final response = await http.get(
+        url_uri,
+        headers: <String, String>{
+          "Content-Type": "application/json; charset=UTF-8",
+          "Authorization": "Bearer " + token,
+        },
+      );
+      //final response = await http.get(url_uri);
+      responseJson = _response(response);
+    } on SocketException {
+      throw Exception();
+    }
     return responseJson;
   }
 
