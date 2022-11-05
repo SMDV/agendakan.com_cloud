@@ -560,55 +560,63 @@ class _GKM_FORM_TICKETState extends State<GKM_FORM_TICKET> {
                         ElevatedButton(
                             onPressed: () async {
                               if (_formKey.currentState!.validate()) {
-                                Get.defaultDialog(
-                                    content: CircularProgressIndicator());
-                                int jumlah_ticket = int.parse(dropdownValue);
-                                List<String> namaList = <String>[];
-                                List<String> noList = <String>[];
-                                List<String> emailList = <String>[];
-                                List<String> tanggalList = <String>[];
-                                List<String> kelaminList = <String>[];
-                                namaList.add(nama.text);
-                                emailList.add(email.text);
-                                noList.add(nohp.text);
-                                tanggalList.add(tanggallahir.text);
-                                kelaminList.add(dropdownValue2);
-                                if (dropdownValue != "1") {
-                                  namaList.add(nama2.text);
-                                  emailList.add(email2.text);
-                                  noList.add(nohp2.text);
-                                  tanggalList.add(tanggallahir2.text);
-                                  kelaminList.add(dropdownValue3);
-                                }
-                                if (dropdownValue == "3") {
-                                  namaList.add(nama3.text);
-                                  emailList.add(email3.text);
-                                  noList.add(nohp3.text);
-                                  tanggalList.add(tanggallahir3.text);
-                                  kelaminList.add(dropdownValue4);
-                                }
+                                if (data_store.read("acara") == "GKM") {
+                                  Get.defaultDialog(
+                                      content: CircularProgressIndicator());
+                                  int jumlah_ticket = int.parse(dropdownValue);
+                                  List<String> namaList = <String>[];
+                                  List<String> noList = <String>[];
+                                  List<String> emailList = <String>[];
+                                  List<String> tanggalList = <String>[];
+                                  List<String> kelaminList = <String>[];
+                                  namaList.add(nama.text);
+                                  emailList.add(email.text);
+                                  noList.add(nohp.text);
+                                  tanggalList.add(tanggallahir.text);
+                                  kelaminList.add(dropdownValue2);
+                                  if (dropdownValue != "1") {
+                                    namaList.add(nama2.text);
+                                    emailList.add(email2.text);
+                                    noList.add(nohp2.text);
+                                    tanggalList.add(tanggallahir2.text);
+                                    kelaminList.add(dropdownValue3);
+                                  }
+                                  if (dropdownValue == "3") {
+                                    namaList.add(nama3.text);
+                                    emailList.add(email3.text);
+                                    noList.add(nohp3.text);
+                                    tanggalList.add(tanggallahir3.text);
+                                    kelaminList.add(dropdownValue4);
+                                  }
 
-                                List<Map<String, Object>> data_send = [];
-                                for (int i = 0; i < jumlah_ticket; i++) {
-                                  data_send.add({
-                                    "nama_tiket": namaList.elementAt(i),
-                                    "nomor_hp": noList.elementAt(i),
-                                    "email": emailList.elementAt(i),
-                                    "tanggal_lahir": tanggalList.elementAt(i),
-                                    "jenis_kelamin": kelaminList.elementAt(i),
-                                    "jenis_tiket":
-                                        data_store.read('jenis_tiket'),
-                                  });
-                                }
-                                var data = await _provider.post4(
-                                    data_store.read('token'), data_send);
-                                if (data['status'] == "success") {
-                                  Get.offAllNamed("/gkm/ticket_list");
+                                  List<Map<String, Object>> data_send = [];
+                                  for (int i = 0; i < jumlah_ticket; i++) {
+                                    data_send.add({
+                                      "nama_tiket": namaList.elementAt(i),
+                                      "nomor_hp": noList.elementAt(i),
+                                      "email": emailList.elementAt(i),
+                                      "tanggal_lahir": tanggalList.elementAt(i),
+                                      "jenis_kelamin": kelaminList.elementAt(i),
+                                      "jenis_tiket":
+                                          data_store.read('jenis_tiket'),
+                                    });
+                                  }
+                                  var data = await _provider.post4(
+                                      data_store.read('token'), data_send);
+                                  if (data['status'] == "success") {
+                                    Get.offAllNamed("/gkm/ticket_list");
+                                  } else {
+                                    Get.defaultDialog(
+                                        content: Text(
+                                            "Maksimum pembelian 3 tiket dalam 1 akun!"));
+                                    Get.offAllNamed("/gkm");
+                                  }
                                 } else {
                                   Get.defaultDialog(
-                                      content: Text(
-                                          "Maksimum pembelian 3 tiket dalam 1 akun!"));
-                                  Get.offAllNamed("/gkm");
+                                          content: Text(
+                                              "Silahkan login ulang untuk akun khusus GKM!"))
+                                      .then((value) =>
+                                          Get.offAndToNamed("/gkm/loginpage"));
                                 }
                               }
                             },

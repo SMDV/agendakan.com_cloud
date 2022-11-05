@@ -1,6 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:agendakan_2/pages/dashboard/dashboard.dart';
+import 'package:agendakan_2/pages/fipfest/controller/register_page.dart';
+import 'package:agendakan_2/pages/fipfest/fipfest_buy_form.dart';
+import 'package:agendakan_2/pages/fipfest/fipfest_home.dart';
+import 'package:agendakan_2/pages/fipfest/fipfest_list_ticket.dart';
+import 'package:agendakan_2/pages/fipfest/controller/login_page.dart';
 import 'package:agendakan_2/pages/gkm/gkm_buy_form.dart';
 import 'package:agendakan_2/pages/gkm/gkm_home.dart';
 import 'package:agendakan_2/pages/layout.dart';
@@ -31,6 +36,10 @@ import 'package:agendakan_2/pages/ticketlist/photobooth.dart';
 import 'package:agendakan_2/pages/ticketlist/ticketAdmin.dart';
 import 'package:agendakan_2/pages/ticketlist/ticketAdminTest.dart';
 import 'package:agendakan_2/pages/ticketlist/ticketmenu.dart';
+import 'package:agendakan_2/pages/weekfest/controller/login_page.dart';
+import 'package:agendakan_2/pages/weekfest/weekfest_buy_form.dart';
+import 'package:agendakan_2/pages/weekfest/weekfest_home.dart';
+import 'package:agendakan_2/pages/weekfest/weekfest_list_ticket.dart';
 import 'package:agendakan_2/test.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -165,6 +174,46 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: '/gkm/ticket_list',
             page: () => ListTicketGKM(),
+            transition: Transition.fadeIn),
+        GetPage(
+            name: '/fipfest',
+            page: () => FipFestHome(),
+            transition: Transition.fadeIn),
+        GetPage(
+            name: '/fipfest/ticket_form',
+            page: () => Fipfest_FORM_TICKET(),
+            transition: Transition.fadeIn),
+        GetPage(
+            name: '/fipfest/ticket_list',
+            page: () => ListTicketFipfest(),
+            transition: Transition.fadeIn),
+        GetPage(
+            name: '/fipfest/loginpage',
+            page: () => FipFesLoginPage(title: ''),
+            transition: Transition.fadeIn),
+        GetPage(
+            name: '/fipfest/registerpage',
+            page: () => FipfestRegisterPage(title: ''),
+            transition: Transition.fadeIn),
+        GetPage(
+            name: '/weekfest',
+            page: () => WeekFestHome(),
+            transition: Transition.fadeIn),
+        GetPage(
+            name: '/weekfest/ticket_form',
+            page: () => Weekfest_FORM_TICKET(),
+            transition: Transition.fadeIn),
+        GetPage(
+            name: '/weekfest/ticket_list',
+            page: () => ListTicketWeekfest(),
+            transition: Transition.fadeIn),
+        GetPage(
+            name: '/weekfest/loginpage',
+            page: () => WeekFesLoginPage(title: ''),
+            transition: Transition.fadeIn),
+        GetPage(
+            name: '/weekfest/registerpage',
+            page: () => FipfestRegisterPage(title: ''),
             transition: Transition.fadeIn),
       ],
     );

@@ -473,7 +473,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                             child: Container(
                               width: 1280,
                               child: CarouselSlider(
-                                carouselController: _carouselController,
+                                  carouselController: _carouselController,
                                   items: [
                                     {
                                       "title": "Gebyar Kreativitas\nMahasiswa",
@@ -482,6 +482,23 @@ class _HomeLayoutState extends State<HomeLayout> {
                                       "image": "images/gkm_poster_main.png",
                                       "status": "BUY NOW",
                                       "link": "/gkm"
+                                    },
+                                    {
+                                      "title": "FIPFEST",
+                                      "alamat": "Graha Cakrawala",
+                                      "time": "8 Desember 2022",
+                                      "image": "images/fipfest_poster_main.png",
+                                      "status": "BUY NOW",
+                                      "link": "/fipfest"
+                                    },
+                                    {
+                                      "title": "WEEKFEST",
+                                      "alamat": "Balai Pemuda\nSurabaya",
+                                      "time": "18 - 20 Desember 2022",
+                                      "image":
+                                          "images/weekfest_poster_main.png",
+                                      "status": "BUY NOW",
+                                      "link": "/weekfest"
                                     },
                                     {
                                       "title": "Signaturee",
@@ -1242,6 +1259,22 @@ class _HomeLayoutState extends State<HomeLayout> {
                       "link": "/gkm"
                     },
                     {
+                      "title": "FIPFEST",
+                      "alamat": "Graha Cakrawala",
+                      "time": "8 Desember 2022",
+                      "image": "images/fipfest_poster_main.png",
+                      "status": "BUY NOW",
+                      "link": "/fipfest"
+                    },
+                    {
+                      "title": "WEEKFEST",
+                      "alamat": "Balai Pemuda\nSurabaya",
+                      "time": "18 - 20 Desember 2022",
+                      "image": "images/weekfest_poster_main.png",
+                      "status": "BUY NOW",
+                      "link": "/weekfest"
+                    },
+                    {
                       "title": "Signaturee",
                       "alamat": "Kusuma Agro Wisata",
                       "time": "23 Juli 2022",
@@ -1420,6 +1453,22 @@ class _HomeLayoutState extends State<HomeLayout> {
                       "image": "images/gkm_poster_main.png",
                       "status": "BUY NOW",
                       "link": "/gkm"
+                    },
+                    {
+                      "title": "FIPFEST",
+                      "alamat": "Graha Cakrawala",
+                      "time": "8 Desember 2022",
+                      "image": "images/fipfest_poster_main.png",
+                      "status": "BUY NOW",
+                      "link": "/fipfest"
+                    },
+                    {
+                      "title": "WEEKFEST",
+                      "alamat": "Balai Pemuda\nSurabaya",
+                      "time": "18 - 20 Desember 2022",
+                      "image": "images/weekfest_poster_main.png",
+                      "status": "BUY NOW",
+                      "link": "/weekfest"
                     },
                   ].map((e) {
                     return Builder(builder: (context) {

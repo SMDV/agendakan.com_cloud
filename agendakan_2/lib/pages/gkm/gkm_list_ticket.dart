@@ -18,7 +18,7 @@ class ListTicketGKM extends StatefulWidget {
 class _ListTicketGKMState extends State<ListTicketGKM> {
   // ApiPlugin _provider = ApiPlugin();
   GetDataController _dataControll = Get.put(GetDataController());
-  String keyword = "";
+  String keyword = "all";
   final searchName = TextEditingController();
   GlobalKey<ScaffoldState> _key = GlobalKey();
   @override
@@ -26,6 +26,10 @@ class _ListTicketGKMState extends State<ListTicketGKM> {
     final data_store = GetStorage();
     _dataControll.loadData(keyword);
     print(data_store.read("isAdmin"));
+    int _currentSortColumn = 0;
+    bool _isAscending = true;
+    String ticketStatus = "All";
+    String ticketType = "All";
     return _dataControll.obx(
       (state) => Scaffold(
         key: _key,
@@ -86,6 +90,7 @@ class _ListTicketGKMState extends State<ListTicketGKM> {
                     onTap: () {
                       data_store.remove('token');
                       data_store.remove('isAdmin');
+                      data_store.remove('acara');
                       Get.offAllNamed("/gkm");
                     },
                   ),
@@ -144,6 +149,36 @@ class _ListTicketGKMState extends State<ListTicketGKM> {
                       ),
                     ),
                     Spacer(),
+                    if (data_store.read("isAdmin") == 1) ...[
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text("Presale 2 Ticket status (Admin only)"),
+                          Row(
+                            children: [
+                              Text("Sisa"),
+                              Text(" - "),
+                              Text("Terjual")
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                _dataControll._sisa,
+                                style: TextStyle(color: Colors.red),
+                              ),
+                              Text("/"),
+                              Text(
+                                _dataControll._sold,
+                                style: TextStyle(color: Colors.green),
+                              )
+                            ],
+                          )
+                        ],
+                      )
+                    ],
+                    Spacer(),
                     InkWell(
                         onTap: () {
                           _key.currentState?.openEndDrawer();
@@ -161,8 +196,50 @@ class _ListTicketGKMState extends State<ListTicketGKM> {
                 PaginatedDataTable(
                   columns: [
                     DataColumn(label: Text("No")),
-                    DataColumn(label: Text("Name")),
-                    DataColumn(label: Text("Ticket")),
+                    DataColumn(
+                      label: Text("Name"),
+                      onSort: (columnIndex, _) {
+                        _currentSortColumn = columnIndex;
+                        if (_isAscending == true) {
+                          _isAscending = false;
+                          print("Column index = " + columnIndex.toString());
+                          // sort the product list in Ascending, order by Price
+                          _dataControll._data.sort((productA, productB) =>
+                              productB['tiket'][0]['nama_tiket'].compareTo(
+                                  productA['tiket'][0]['nama_tiket']));
+                        } else {
+                          _isAscending = true;
+                          // sort the product list in Descending, order by Price
+                          _dataControll._data.sort((productA, productB) =>
+                              productA['tiket'][0]['nama_tiket'].compareTo(
+                                  productB['tiket'][0]['nama_tiket']));
+                        }
+                        _dataControll.reSync();
+                        // setState(() {});
+                      },
+                    ),
+                    DataColumn(
+                      label: Text("Ticket"),
+                      onSort: (columnIndex, _) {
+                        _currentSortColumn = columnIndex;
+                        if (_isAscending == true) {
+                          _isAscending = false;
+                          print("Column index = " + columnIndex.toString());
+                          // sort the product list in Ascending, order by Price
+                          _dataControll._data.sort((productA, productB) =>
+                              productB['tiket'][0]['jenis_tiket'].compareTo(
+                                  productA['tiket'][0]['jenis_tiket']));
+                        } else {
+                          _isAscending = true;
+                          // sort the product list in Descending, order by Price
+                          _dataControll._data.sort((productA, productB) =>
+                              productA['tiket'][0]['jenis_tiket'].compareTo(
+                                  productB['tiket'][0]['jenis_tiket']));
+                        }
+                        _dataControll.reSync();
+                        // setState(() {});
+                      },
+                    ),
                     DataColumn(label: Text("Amount")),
                     DataColumn(label: Text("Price")),
                     DataColumn(label: Text("Status")),
@@ -173,11 +250,53 @@ class _ListTicketGKMState extends State<ListTicketGKM> {
                       DataColumn(label: Text("Download"))
                     ]
                   ],
+                  sortColumnIndex: _currentSortColumn,
+                  sortAscending: _isAscending,
                   source: MyData(dataSource: _dataControll._data),
                   header: Row(children: [
                     Spacer(),
                     Text("List Ticket"),
                     Spacer(),
+                    DropdownButton(
+                      value: ticketStatus,
+                      items: <String>['All', 'Success', 'Failed']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        if (ticketStatus != newValue) {
+                          ticketStatus = newValue!;
+                          _dataControll.loadData(ticketStatus.toLowerCase());
+                        }
+                      },
+                    ),
+                    // ElevatedButton(
+                    //     onPressed: () {
+                    //       _dataControll.loadData("all");
+                    //     },
+                    //     child: Text("All")),
+                    // SizedBox(
+                    //   width: 5,
+                    // ),
+                    // ElevatedButton(
+                    //     onPressed: () {
+                    //       _dataControll.loadData("success");
+                    //     },
+                    //     child: Text("Success")),
+                    // SizedBox(
+                    //   width: 5,
+                    // ),
+                    // ElevatedButton(
+                    //     onPressed: () {
+                    //       _dataControll.loadData("failed");
+                    //     },
+                    //     child: Text("Failed")),
+                    SizedBox(
+                      width: 20,
+                    )
                   ]),
                   rowsPerPage: 20,
                   // columnSpacing: 100,
@@ -211,6 +330,13 @@ class GetDataController extends GetxController with StateMixin {
   List<dynamic> _data = [].obs;
   GKM_API _provider = GKM_API();
   final data_store = GetStorage();
+  String _sisa = "";
+  String _sold = "";
+  void reSync() {
+    change(null, status: RxStatus.loading());
+    change(null, status: RxStatus.success());
+  }
+
   void loadData(String keyword) async {
     var token = data_store.read('token');
     if (token == null) {
@@ -220,12 +346,14 @@ class GetDataController extends GetxController with StateMixin {
       change(null, status: RxStatus.loading());
       var apiData;
       // print(token + "TESTING HALLO");
-      if (token != null) {
-        apiData = await _provider.get3(token);
+      if (token != null && data_store.read('acara') == "GKM") {
+        apiData = await _provider.get3(token, keyword);
       }
       if (apiData == null || apiData["data"] == null) {
         change(null, status: RxStatus.empty());
       } else {
+        _sisa = apiData['presale2-sisa'].toString();
+        _sold = apiData['presale2-terjual'].toString();
         _data = apiData["data"];
         change(null, status: RxStatus.success());
       }
@@ -236,7 +364,7 @@ class GetDataController extends GetxController with StateMixin {
     String token = data_store.read('token');
 
     change(null, status: RxStatus.loading());
-    var apiData = await _provider.get3(token);
+    var apiData = await _provider.get3(token, keyword);
     if (apiData["data"] == null) {
       change(null, status: RxStatus.empty());
     } else {
