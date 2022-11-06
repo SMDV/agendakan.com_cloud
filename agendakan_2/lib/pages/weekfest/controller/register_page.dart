@@ -124,7 +124,7 @@ class _WeekfestRegisterPageState extends State<WeekfestRegisterPage> {
                           print(data['message']);
                           if (data != null) {
                             data_store.write("token", data['token']);
-                            Get.toNamed('/weekfast', arguments: data['token']);
+                            Get.toNamed('/weekfest', arguments: data['token']);
                           }
                         } else {
                           print("Register Failed!");

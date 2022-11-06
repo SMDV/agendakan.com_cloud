@@ -656,27 +656,21 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                       // Spacer(),
                       InkWell(
                         onTap: () async {
-                          // Get.defaultDialog(
-                          //     title: "*MAINTENANCE*",
-                          //     content: Center(
-                          //       child: Text(
-                          //           "Please Wait! \nThis function is still in maintenance!"),
-                          //     ));
-                          // final _provider = GKM_API();
-                          // dynamic data = await _provider.get7();
-                          // print(data['presale2']);
-                          // if (data['presale2'] != "tutup") {
-                          //   final data_store = GetStorage();
-                          //   if (data_store.read("token") != null) {
-                          //     data_store.write("jenis_tiket", "presale2");
-                          //     Get.toNamed("/gkm/ticket_form");
-                          //   } else {
-                          //     Get.toNamed("/loginpage");
-                          //   }
-                          // } else {
-                          //   Get.defaultDialog(
-                          //       content: Text("Ticket sudah Sold Out!"));
-                          // }
+                          final _provider = FipFest_API();
+                          dynamic data = await _provider.get7();
+                          print(data['presale2']);
+                          if (data['presale2'] != "tutup") {
+                            final data_store = GetStorage();
+                            if (data_store.read("token") != null) {
+                              data_store.write("jenis_tiket", "presale2");
+                              Get.toNamed("/fipfest/ticket_form");
+                            } else {
+                              Get.toNamed("/fipfest/loginpage");
+                            }
+                          } else {
+                            Get.defaultDialog(
+                                content: Text("Ticket sudah Sold Out!"));
+                          }
                         },
                         child: Container(
                             decoration: BoxDecoration(
@@ -693,20 +687,20 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                                 Container(
                                   width: MediaQuery.of(context).size.width / 8,
                                   // height: MediaQuery.of(context).size.width / 8,
-                                  child: Image(
-                                    image: AssetImage(
-                                        "images/gkm_gs_comingsoon.png"),
-                                    fit: BoxFit.fitHeight,
-                                  ),
                                   // child: Image(
-                                  //   image: AssetImage("images/sold_out.png"),
+                                  //   image: AssetImage("images/fipfest_p1.png"),
                                   //   fit: BoxFit.fitHeight,
                                   // ),
-                                  // decoration: BoxDecoration(
-                                  //     // color: Colors.black.withOpacity(0.85),
-                                  //     image: DecorationImage(
-                                  //         image:
-                                  //             AssetImage("images/gkm_p4.png"))),
+                                  // kalo sudah sold out
+                                  child: Image(
+                                    image: AssetImage("images/fipfest_p2.png"),
+                                    fit: BoxFit.fitHeight,
+                                  ),
+                                  decoration: BoxDecoration(
+                                      // color: Colors.black.withOpacity(0.85),
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              "images/fipfest_p2.png"))),
                                 ),
                                 Spacer(),
                               ],
