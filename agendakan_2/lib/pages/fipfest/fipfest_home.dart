@@ -580,20 +580,20 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                                 Container(
                                   width: MediaQuery.of(context).size.width / 8,
                                   // height: MediaQuery.of(context).size.width / 8,
-                                  child: Image(
-                                    image: AssetImage("images/fipfest_p1.png"),
-                                    fit: BoxFit.fitHeight,
-                                  ),
-                                  //kalo sudah sold out
                                   // child: Image(
-                                  //   image: AssetImage("images/sold_out.png"),
+                                  //   image: AssetImage("images/fipfest_p1.png"),
                                   //   fit: BoxFit.fitHeight,
                                   // ),
-                                  // decoration: BoxDecoration(
-                                  //     // color: Colors.black.withOpacity(0.85),
-                                  //     image: DecorationImage(
-                                  //         image:
-                                  //             AssetImage("images/gkm_p1.png"))),
+                                  // kalo sudah sold out
+                                  child: Image(
+                                    image: AssetImage("images/sold_out.png"),
+                                    fit: BoxFit.fitHeight,
+                                  ),
+                                  decoration: BoxDecoration(
+                                      // color: Colors.black.withOpacity(0.85),
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              "images/fipfest_p1.png"))),
                                 ),
                                 Spacer(),
                               ],
