@@ -785,56 +785,57 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                   ),
                 ),
                 Spacer(),
-                // InkWell(
-                //   onTap: () async {
-                //     // Get.defaultDialog(
-                //     //     title: "*MAINTENANCE*",
-                //     //     content: Center(
-                //     //       child: Text(
-                //     //           "Please Wait! \nThis function is still in maintenance!"),
-                //     //     ));
-                //     final _provider = GKM_API();
-                //     dynamic data = await _provider.get7();
-                //     print(data['presale3']);
-                //     if (data['presale3'] != "tutup") {
-                //       final data_store = GetStorage();
-                //       if (data_store.read("token") != null) {
-                //         data_store.write("jenis_tiket", "presale3");
-                //         Get.toNamed("/gkm/ticket_form");
-                //       } else {
-                //         Get.toNamed("/loginpage");
-                //       }
-                //     } else {
-                //       Get.defaultDialog(
-                //           content: Text("Ticket sudah Sold Out!"));
-                //     }
-                //   },
-                //   child: Container(
-                //       decoration: BoxDecoration(
-                //           color: Color(0xffFFF9E0).withOpacity(0.5),
-                //           border: Border.all(color: Colors.blue, width: 2),
-                //           borderRadius: BorderRadius.all(Radius.circular(20))),
-                //       width: MediaQuery.of(context).size.width / 4,
-                //       height: MediaQuery.of(context).size.width / 8,
-                //       child: Column(
-                //         children: [
-                //           Spacer(),
-                //           Container(
-                //             width: MediaQuery.of(context).size.width / 8,
-                //             // height: MediaQuery.of(context).size.width / 8,
-                //             child: Image(
-                //               image: AssetImage("images/gkm_p5.png"),
-                //               fit: BoxFit.fitHeight,
-                //             ),
-                //             decoration: BoxDecoration(
-                //                 // color: Colors.black.withOpacity(0.85),
-                //                 image: DecorationImage(
-                //                     image: AssetImage("images/gkm_p5.png"))),
-                //           ),
-                //           Spacer(),
-                //         ],
-                //       )),
-                // ),
+                InkWell(
+                  onTap: () async {
+                    // Get.defaultDialog(
+                    //     title: "*MAINTENANCE*",
+                    //     content: Center(
+                    //       child: Text(
+                    //           "Please Wait! \nThis function is still in maintenance!"),
+                    //     ));
+                    // final _provider = GKM_API();
+                    // dynamic data = await _provider.get7();
+                    // print(data['presale3']);
+                    // if (data['presale3'] != "tutup") {
+                    //   final data_store = GetStorage();
+                    //   if (data_store.read("token") != null) {
+                    //     data_store.write("jenis_tiket", "presale3");
+                    //     Get.toNamed("/gkm/ticket_form");
+                    //   } else {
+                    //     Get.toNamed("/loginpage");
+                    //   }
+                    // } else {
+                    //   Get.defaultDialog(
+                    //       content: Text("Ticket sudah Sold Out!"));
+                    // }
+                  },
+                  child: Container(
+                      decoration: BoxDecoration(
+                          color: Color(0xffFFF9E0).withOpacity(0.5),
+                          border: Border.all(color: Colors.blue, width: 2),
+                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                      width: MediaQuery.of(context).size.width / 4,
+                      height: MediaQuery.of(context).size.width / 8,
+                      child: Column(
+                        children: [
+                          Spacer(),
+                          Container(
+                            width: MediaQuery.of(context).size.width / 8,
+                            // height: MediaQuery.of(context).size.width / 8,
+                            child: Image(
+                              image: AssetImage("images/gkm_gs_comingsoon.png"),
+                              fit: BoxFit.scaleDown,
+                            ),
+                            decoration: BoxDecoration(
+                                // color: Colors.black.withOpacity(0.85),
+                                image: DecorationImage(
+                                    image: AssetImage(
+                                        "images/gkm_gs_comingsoon.png"))),
+                          ),
+                          Spacer(),
+                        ],
+                      )),
+                ),
                 Spacer(),
               ]),
               color: Color(0xffFFBD66),
