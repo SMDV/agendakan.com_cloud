@@ -48,7 +48,10 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                   title: Center(
                       child: Text(
                     "TICKET LIST",
-                    style: TextStyle(fontSize: 20, fontFamily: 'Syne', fontWeight: FontWeight.w800),
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: 'Syne',
+                        fontWeight: FontWeight.w800),
                   )),
                   onTap: () {
                     if (data_store.read("isAdmin") == 1) {
@@ -65,7 +68,10 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                   title: Center(
                       child: Text(
                     "LOG OUT",
-                    style: TextStyle(fontSize: 20, fontFamily: 'Syne', fontWeight: FontWeight.w800),
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: 'Syne',
+                        fontWeight: FontWeight.w800),
                   )),
                   onTap: () {
                     data_store.remove('token');
@@ -77,12 +83,16 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
               ),
             ] else ...[
               Container(
-                decoration: BoxDecoration(border: Border(top: BorderSide(), bottom: BorderSide())),
+                decoration: BoxDecoration(
+                    border: Border(top: BorderSide(), bottom: BorderSide())),
                 child: ListTile(
                   title: Center(
                       child: Text(
                     "LOG IN",
-                    style: TextStyle(fontSize: 20, fontFamily: 'Syne', fontWeight: FontWeight.w800),
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: 'Syne',
+                        fontWeight: FontWeight.w800),
                   )),
                   onTap: () {
                     Get.offAllNamed("/fipfest/loginpage");
@@ -177,7 +187,8 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                           decoration: BoxDecoration(
                               color: Colors.white,
                               border: Border.all(color: Colors.blue, width: 2),
-                              borderRadius: BorderRadius.all(Radius.circular(10))),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
                         ),
                       ),
                       onTap: () {
@@ -205,7 +216,8 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                         decoration: BoxDecoration(
                             color: Colors.blue,
                             border: Border.all(color: Colors.blue, width: 2),
-                            borderRadius: BorderRadius.all(Radius.circular(10))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
                       ),
                       onTap: () {
                         data_store.remove('token');
@@ -235,7 +247,8 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                         decoration: BoxDecoration(
                             color: Colors.white,
                             border: Border.all(color: Colors.blue, width: 2),
-                            borderRadius: BorderRadius.all(Radius.circular(10))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
                       ),
                     ),
                     SizedBox(
@@ -258,7 +271,8 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                         decoration: BoxDecoration(
                             color: Colors.blue,
                             border: Border.all(color: Colors.blue, width: 2),
-                            borderRadius: BorderRadius.all(Radius.circular(10))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
                       ),
                     ),
                     SizedBox(
@@ -343,17 +357,23 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                                       child: Container(
                                         child: Align(
                                           alignment: Alignment.bottomCenter,
-                                          child: Image.asset("images/fipfest_gs_1.png"),
+                                          child: Image.asset(
+                                              "images/fipfest_gs_1.png"),
                                         ),
-                                        width: MediaQuery.of(context).size.width / 4,
-                                        height: MediaQuery.of(context).size.width / 5,
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                4,
+                                        height:
+                                            MediaQuery.of(context).size.width /
+                                                5,
                                         decoration: BoxDecoration(
                                             color: Color(0xffF1F1F1),
                                             // image: DecorationImage(
                                             //     image: AssetImage(
                                             //         'images/fipfest_gs_letto.png'),
                                             //     fit: BoxFit.fitWidth),
-                                            borderRadius: BorderRadius.all(Radius.circular(20))),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(20))),
                                       ),
                                     ),
                                   ],
@@ -373,16 +393,23 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                                         // padding: EdgeInsets.all(
                                         //     MediaQuery.of(context).size.width /
                                         //         20),
-                                        child: Image.asset("images/fipfest_gs_2.png"),
-                                        width: MediaQuery.of(context).size.width / 4,
-                                        height: MediaQuery.of(context).size.width / 5,
+                                        child: Image.asset(
+                                            "images/fipfest_gs_2.png"),
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                4,
+                                        height:
+                                            MediaQuery.of(context).size.width /
+                                                5,
                                         decoration: BoxDecoration(
-                                            color: Color(0xffF1F1F1).withOpacity(0),
+                                            color: Color(0xffF1F1F1)
+                                                .withOpacity(0),
                                             // image: DecorationImage(
                                             //     image: AssetImage(
                                             //         'images/gkm_gs_comingsoon.png'),
                                             //     fit: BoxFit.scaleDown),
-                                            borderRadius: BorderRadius.all(Radius.circular(20))),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(20))),
                                       ),
                                     ),
                                   ],
@@ -402,16 +429,23 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                                         // padding: EdgeInsets.all(
                                         //     MediaQuery.of(context).size.width /
                                         //         20),
-                                        child: Image.asset("images/fipfest_gs_3.png"),
-                                        width: MediaQuery.of(context).size.width / 4,
-                                        height: MediaQuery.of(context).size.width / 5,
+                                        child: Image.asset(
+                                            "images/fipfest_gs_3.png"),
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                4,
+                                        height:
+                                            MediaQuery.of(context).size.width /
+                                                5,
                                         decoration: BoxDecoration(
-                                            color: Color(0xffF1F1F1).withOpacity(0),
+                                            color: Color(0xffF1F1F1)
+                                                .withOpacity(0),
                                             // image: DecorationImage(
                                             //     image: AssetImage(
                                             //         'images/gkm_gs_comingsoon.png'),
                                             //     fit: BoxFit.scaleDown),
-                                            borderRadius: BorderRadius.all(Radius.circular(20))),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(20))),
                                       ),
                                     ),
                                   ],
@@ -431,16 +465,23 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                                         // padding: EdgeInsets.all(
                                         //     MediaQuery.of(context).size.width /
                                         //         20),
-                                        child: Image.asset("images/fipfest_gs_4.png"),
-                                        width: MediaQuery.of(context).size.width / 4,
-                                        height: MediaQuery.of(context).size.width / 5,
+                                        child: Image.asset(
+                                            "images/fipfest_gs_4.png"),
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                4,
+                                        height:
+                                            MediaQuery.of(context).size.width /
+                                                5,
                                         decoration: BoxDecoration(
-                                            color: Color(0xffF1F1F1).withOpacity(0),
+                                            color: Color(0xffF1F1F1)
+                                                .withOpacity(0),
                                             // image: DecorationImage(
                                             //     image: AssetImage(
                                             //         'images/gkm_gs_comingsoon.png'),
                                             //     fit: BoxFit.scaleDown),
-                                            borderRadius: BorderRadius.all(Radius.circular(20))),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(20))),
                                       ),
                                     ),
                                   ],
@@ -543,7 +584,9 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                 width: MediaQuery.of(context).size.width / 2,
               ),
               Container(
-                child: Image(image: AssetImage("images/fipfest_date_location_right.png")),
+                child: Image(
+                    image:
+                        AssetImage("images/fipfest_date_location_right.png")),
                 color: Color(0xffFFF9E0),
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width / 2,
@@ -565,7 +608,10 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                 Spacer(),
                 Container(
                   padding: EdgeInsets.fromLTRB(
-                      MediaQuery.of(context).size.width / 16, 0, MediaQuery.of(context).size.width / 16, 0),
+                      MediaQuery.of(context).size.width / 16,
+                      0,
+                      MediaQuery.of(context).size.width / 16,
+                      0),
                   child: Row(
                     children: [
                       Spacer(),
@@ -589,14 +635,17 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                               Get.toNamed("/fipfest/loginpage");
                             }
                           } else {
-                            Get.defaultDialog(content: Text("Ticket sudah Sold Out!"));
+                            Get.defaultDialog(
+                                content: Text("Ticket sudah Sold Out!"));
                           }
                         },
                         child: Container(
                             decoration: BoxDecoration(
                                 color: Color(0xffFFF9E0).withOpacity(0.5),
-                                border: Border.all(color: Colors.blue, width: 2),
-                                borderRadius: BorderRadius.all(Radius.circular(20))),
+                                border:
+                                    Border.all(color: Colors.blue, width: 2),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20))),
                             width: MediaQuery.of(context).size.width / 4,
                             height: MediaQuery.of(context).size.width / 8,
                             child: Column(
@@ -616,7 +665,9 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                                   ),
                                   decoration: BoxDecoration(
                                       // color: Colors.black.withOpacity(0.85),
-                                      image: DecorationImage(image: AssetImage("images/fipfest_p1.png"))),
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              "images/fipfest_p1.png"))),
                                 ),
                                 Spacer(),
                               ],
@@ -691,14 +742,17 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                               Get.toNamed("/fipfest/loginpage");
                             }
                           } else {
-                            Get.defaultDialog(content: Text("Ticket sudah Sold Out!"));
+                            Get.defaultDialog(
+                                content: Text("Ticket sudah Sold Out!"));
                           }
                         },
                         child: Container(
                             decoration: BoxDecoration(
                                 color: Color(0xffFFF9E0).withOpacity(0.5),
-                                border: Border.all(color: Colors.blue, width: 2),
-                                borderRadius: BorderRadius.all(Radius.circular(20))),
+                                border:
+                                    Border.all(color: Colors.blue, width: 2),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20))),
                             width: MediaQuery.of(context).size.width / 4,
                             height: MediaQuery.of(context).size.width / 8,
                             child: Column(
@@ -707,18 +761,20 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                                 Container(
                                   width: MediaQuery.of(context).size.width / 8,
                                   // height: MediaQuery.of(context).size.width / 8,
-                                  // child: Image(
-                                  //   image: AssetImage("images/fipfest_p1.png"),
-                                  //   fit: BoxFit.fitHeight,
-                                  // ),
-                                  // kalo sudah sold out
                                   child: Image(
-                                    image: AssetImage("images/fipfest_p2.png"),
+                                    image: AssetImage("images/sold_out.png"),
                                     fit: BoxFit.fitHeight,
                                   ),
+                                  // kalo sudah sold out
+                                  // child: Image(
+                                  //   image: AssetImage("images/fipfest_p2.png"),
+                                  //   fit: BoxFit.fitHeight,
+                                  // ),
                                   decoration: BoxDecoration(
                                       // color: Colors.black.withOpacity(0.85),
-                                      image: DecorationImage(image: AssetImage("images/fipfest_p2.png"))),
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              "images/fipfest_p2.png"))),
                                 ),
                                 Spacer(),
                               ],
@@ -897,8 +953,10 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                         children: [
                           InkWell(
                             onTap: () async {
-                              if (await canLaunchUrl(Uri.parse("https://www.instagram.com/fipfest/"))) {
-                                await launchUrl(Uri.parse("https://www.instagram.com/fipfest/"));
+                              if (await canLaunchUrl(Uri.parse(
+                                  "https://www.instagram.com/fipfest/"))) {
+                                await launchUrl(Uri.parse(
+                                    "https://www.instagram.com/fipfest/"));
                               } else {
                                 throw 'Could not launch insta';
                               }
@@ -921,8 +979,10 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
                           ),
                           InkWell(
                             onTap: () async {
-                              if (await canLaunchUrl(Uri.parse("https://wa.me/6282233591076"))) {
-                                await launchUrl(Uri.parse("https://wa.me/6282233591076"));
+                              if (await canLaunchUrl(
+                                  Uri.parse("https://wa.me/6282233591076"))) {
+                                await launchUrl(
+                                    Uri.parse("https://wa.me/6282233591076"));
                               } else {
                                 throw 'Could not launch insta';
                               }
@@ -1000,7 +1060,10 @@ class _FipFestHome_HomeState extends State<FipFestHome> {
             Container(
               child: Column(children: [
                 Spacer(),
-                Center(child: Image(image: AssetImage("images/footer_bottom_reserved.png"))),
+                Center(
+                    child: Image(
+                        image:
+                            AssetImage("images/footer_bottom_reserved.png"))),
                 Spacer(),
               ]),
               // padding: EdgeInsets.fromLTRB(0, 40, 0, 40),
