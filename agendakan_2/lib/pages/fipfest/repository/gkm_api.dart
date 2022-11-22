@@ -44,8 +44,7 @@ class FipFest_API {
         headers: <String, String>{
           "Content-Type": "application/json; charset=UTF-8",
         },
-        body:
-            jsonEncode(<String, String>{"email": email, "password": password}),
+        body: jsonEncode(<String, String>{"email": email, "password": password}),
       );
       //final response = await http.get(url_uri);
       responseJson = _response(response);
@@ -98,8 +97,7 @@ class FipFest_API {
   }
 
   //beli ticket
-  Future<dynamic> post4(
-      String token, List<Map<String, Object>> data_send) async {
+  Future<dynamic> post4(String token, List<Map<String, Object>> data_send) async {
     var responseJson;
     //const test = data_send;
     String jsonString = jsonEncode(data_send);
@@ -153,8 +151,7 @@ class FipFest_API {
     String jsonString = jsonEncode(test);
     print(jsonString);
     try {
-      var url_uri =
-          Uri.parse(_baseUrl + "/api/" + keyword + "-pembelian"); // ->
+      var url_uri = Uri.parse(_baseUrl + "/api/" + keyword + "-pembelian"); // ->
 
       final response = await http.get(
         url_uri,
@@ -239,8 +236,7 @@ class FipFest_API {
     } on SocketException {
       //throw Exception();
     }
-    html.AnchorElement anchorElement =
-        new html.AnchorElement(href: responseJson['']);
+    html.AnchorElement anchorElement = new html.AnchorElement(href: responseJson['']);
     return responseJson;
   }
 
@@ -264,8 +260,7 @@ class FipFest_API {
     } on SocketException {
       //throw Exception();
     }
-    html.AnchorElement anchorElement =
-        new html.AnchorElement(href: responseJson['']);
+    html.AnchorElement anchorElement = new html.AnchorElement(href: responseJson['']);
     return responseJson;
   }
 
@@ -348,8 +343,7 @@ class FipFest_API {
           "Content-Type": "application/json; charset=UTF-8",
           "Authorization": "Bearer " + token,
         },
-        body: jsonEncode(
-            <String, dynamic>{"id_pembelian": id, "jenis": "approve"}),
+        body: jsonEncode(<String, dynamic>{"id_pembelian": id, "jenis": "approve"}),
       );
       //final response = await http.get(url_uri);
       responseJson = _response(response);
@@ -377,8 +371,7 @@ class FipFest_API {
           "Content-Type": "application/json; charset=UTF-8",
           "Authorization": "Bearer " + token,
         },
-        body: jsonEncode(
-            <String, dynamic>{"id_pembelian": id, "jenis": "cancelled"}),
+        body: jsonEncode(<String, dynamic>{"id_pembelian": id, "jenis": "cancelled"}),
       );
       //final response = await http.get(url_uri);
       responseJson = _response(response);
@@ -416,8 +409,7 @@ class FipFest_API {
     try {
       var url_uri = Uri.parse(_baseUrl + "/api/tiket-acc-mobile");
       Get.back();
-      Get.defaultDialog(
-          title: "Mohon Menunggu", content: CircularProgressIndicator());
+      Get.defaultDialog(title: "Mohon Menunggu", content: CircularProgressIndicator());
       final response = await http.post(
         url_uri,
         headers: <String, String>{
@@ -430,9 +422,7 @@ class FipFest_API {
       responseJson = _response(response);
       if (responseJson['success']) {
         Get.back();
-        Get.defaultDialog(
-                title: "Success", content: Text("Status berhasil diubah!"))
-            .then((value) {
+        Get.defaultDialog(title: "Success", content: Text("Status berhasil diubah!")).then((value) {
           if (jenis == "hadir") {
             Get.offAllNamed("/signature/OTS/bukutamu");
           } else if (jenis == "foto") {
@@ -478,8 +468,7 @@ class FipFest_API {
         return Exception(response.body.toString());
       case 409:
         print("Error 409");
-        Get.defaultDialog(
-                content: Text("Maksimum pembelian 3 tiket dalam 1 akun!"))
+        Get.defaultDialog(content: Text("Maksimum pembelian 4 tiket dalam 1 akun!"))
             .then((value) => Get.offAllNamed("/fipfest/ticket_list"));
         return null;
       //throw UnauthorisedException(response.body.toString());
@@ -487,15 +476,11 @@ class FipFest_API {
         var responseJson = json.decode(response.body.toString());
         if (responseJson['message']['nomor_ktp'] != null) {
           //print("Nomor ktp error");
-          Get.defaultDialog(
-                  content: Text(
-                      "Data KTP yang dimasukkan sudah terdaftar dalam database!"))
+          Get.defaultDialog(content: Text("Data KTP yang dimasukkan sudah terdaftar dalam database!"))
               .then((value) => Get.offAllNamed("/SignatureeFestival/tickets"));
         } else if (responseJson['message']['email'] != null) {
           print("Nomor Email error");
-          Get.defaultDialog(
-                  content: Text(
-                      "Email yang dimasukkan sudah terdaftar dalam database!"))
+          Get.defaultDialog(content: Text("Email yang dimasukkan sudah terdaftar dalam database!"))
               .then((value) => Get.offAllNamed("/fipfest"));
         } else {
           Get.defaultDialog(content: Text("Error Email/Password salah!"))
@@ -509,8 +494,7 @@ class FipFest_API {
       //throw UnauthorisedException(response.body.toString());
       case 423:
         print("Error 423");
-        Get.defaultDialog(content: Text("Image Size Terlalu besar!"))
-            .then((value) => Get.offAllNamed("/fipfest"));
+        Get.defaultDialog(content: Text("Image Size Terlalu besar!")).then((value) => Get.offAllNamed("/fipfest"));
         return null;
       case 500:
         print("Error 503");

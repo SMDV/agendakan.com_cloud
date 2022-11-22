@@ -267,13 +267,11 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                               child: Text(value),
                             );
                           }).toList(),
-                          onChanged: (lockedForm)
-                              ? null
-                              : (String? newValue) {
-                                  setState(() {
-                                    dropdownValue2 = newValue!;
-                                  });
-                                },
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownValue2 = newValue!;
+                            });
+                          },
                         ),
                         if (dropdownValue != "1") ...[
                           const SizedBox(
@@ -407,13 +405,11 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                                 child: Text(value),
                               );
                             }).toList(),
-                            onChanged: (lockedForm)
-                                ? null
-                                : (String? newValue) {
-                                    setState(() {
-                                      dropdownValue3 = newValue!;
-                                    });
-                                  },
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownValue3 = newValue!;
+                              });
+                            },
                           ),
                         ],
                         if (dropdownValue == "3" || dropdownValue == "4") ...[
@@ -548,13 +544,11 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                                 child: Text(value),
                               );
                             }).toList(),
-                            onChanged: (lockedForm)
-                                ? null
-                                : (String? newValue) {
-                                    setState(() {
-                                      dropdownValue4 = newValue!;
-                                    });
-                                  },
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownValue4 = newValue!;
+                              });
+                            },
                           ),
                         ],
                         const SizedBox(
@@ -692,13 +686,11 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                                 child: Text(value),
                               );
                             }).toList(),
-                            onChanged: (lockedForm)
-                                ? null
-                                : (String? newValue) {
-                                    setState(() {
-                                      dropdownValue5 = newValue!;
-                                    });
-                                  },
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownValue5 = newValue!;
+                              });
+                            },
                           ),
                         ],
                         const SizedBox(
