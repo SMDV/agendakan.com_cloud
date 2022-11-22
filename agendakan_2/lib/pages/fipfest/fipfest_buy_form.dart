@@ -70,11 +70,23 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
   bool lockedForm = false;
   @override
   Widget build(BuildContext context) {
+    if (data_store.read('jenis_tiket') == "sd" ||
+        data_store.read('jenis_tiket') == "smp" ||
+        data_store.read('jenis_tiket') == "sma") {
+      lockedForm = true;
+      if (data_store.read('jenis_tiket') == "sd") {
+        dropdownValue = "2";
+      } else if (data_store.read('jenis_tiket') == "smp") {
+        dropdownValue = "3";
+      } else {
+        dropdownValue = "4";
+      }
+    }
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width / 8,
-              10, MediaQuery.of(context).size.width / 8, 10),
+          padding:
+              EdgeInsets.fromLTRB(MediaQuery.of(context).size.width / 8, 10, MediaQuery.of(context).size.width / 8, 10),
           child: Column(
             children: [
               Text(
@@ -84,6 +96,12 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
               SizedBox(
                 height: 25,
               ),
+              if (lockedForm) ...[
+                Text(
+                  "Special Ticket " + data_store.read('jenis_tiket').toString().toUpperCase(),
+                  style: TextStyle(fontSize: 20),
+                ),
+              ],
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -100,8 +118,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                   ),
                   DropdownButton(
                     value: dropdownValue,
-                    items: <String>['1', '2', '3', '4']
-                        .map<DropdownMenuItem<String>>((String value) {
+                    items: <String>['1', '2', '3', '4'].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value),
@@ -125,8 +142,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                         Center(
                             child: Text(
                           "Data Pembeli 1 : ",
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                         )),
                         const SizedBox(
                           height: 20,
@@ -168,9 +184,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                             }
                             return null;
                           },
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
+                          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                           maxLines: 1,
                           // obscureText: true,
                           decoration: InputDecoration(
@@ -190,9 +204,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                         ),
                         TextFormField(
                           controller: email,
-                          validator: (value) => EmailValidator.validate(value!)
-                              ? null
-                              : "Please enter a valid email",
+                          validator: (value) => EmailValidator.validate(value!) ? null : "Please enter a valid email",
                           maxLines: 1,
                           // obscureText: true,
                           decoration: InputDecoration(
@@ -219,8 +231,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                                 lastDate: DateTime(2040));
                             if (pickdate != null) {
                               setState(() {
-                                tanggallahir.text =
-                                    DateFormat('yyyy-MM-dd').format(pickdate);
+                                tanggallahir.text = DateFormat('yyyy-MM-dd').format(pickdate);
                               });
                             }
                           },
@@ -250,8 +261,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                         ),
                         DropdownButton(
                           value: dropdownValue2,
-                          items: <String>["Male", "Female"]
-                              .map<DropdownMenuItem<String>>((String value) {
+                          items: <String>["Male", "Female"].map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
                               child: Text(value),
@@ -272,8 +282,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                           Center(
                               child: Text(
                             "Data Pembeli 2 : ",
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
+                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                           )),
                           const SizedBox(
                             height: 20,
@@ -315,9 +324,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                               }
                               return null;
                             },
-                            inputFormatters: [
-                              FilteringTextInputFormatter.digitsOnly
-                            ],
+                            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                             maxLines: 1,
                             // obscureText: true,
                             decoration: InputDecoration(
@@ -337,10 +344,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                           ),
                           TextFormField(
                             controller: email2,
-                            validator: (value) =>
-                                EmailValidator.validate(value!)
-                                    ? null
-                                    : "Please enter a valid email",
+                            validator: (value) => EmailValidator.validate(value!) ? null : "Please enter a valid email",
                             maxLines: 1,
                             // obscureText: true,
                             decoration: InputDecoration(
@@ -367,8 +371,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                                   lastDate: DateTime(2040));
                               if (pickdate != null) {
                                 setState(() {
-                                  tanggallahir2.text =
-                                      DateFormat('yyyy-MM-dd').format(pickdate);
+                                  tanggallahir2.text = DateFormat('yyyy-MM-dd').format(pickdate);
                                 });
                               }
                             },
@@ -398,8 +401,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                           ),
                           DropdownButton(
                             value: dropdownValue3,
-                            items: <String>["Male", "Female"]
-                                .map<DropdownMenuItem<String>>((String value) {
+                            items: <String>["Male", "Female"].map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text(value),
@@ -421,8 +423,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                           Center(
                               child: Text(
                             "Data Pembeli 3 : ",
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
+                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                           )),
                           const SizedBox(
                             height: 20,
@@ -464,9 +465,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                               }
                               return null;
                             },
-                            inputFormatters: [
-                              FilteringTextInputFormatter.digitsOnly
-                            ],
+                            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                             maxLines: 1,
                             // obscureText: true,
                             decoration: InputDecoration(
@@ -486,10 +485,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                           ),
                           TextFormField(
                             controller: email3,
-                            validator: (value) =>
-                                EmailValidator.validate(value!)
-                                    ? null
-                                    : "Please enter a valid email",
+                            validator: (value) => EmailValidator.validate(value!) ? null : "Please enter a valid email",
                             maxLines: 1,
                             // obscureText: true,
                             decoration: InputDecoration(
@@ -516,8 +512,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                                   lastDate: DateTime(2040));
                               if (pickdate != null) {
                                 setState(() {
-                                  tanggallahir3.text =
-                                      DateFormat('yyyy-MM-dd').format(pickdate);
+                                  tanggallahir3.text = DateFormat('yyyy-MM-dd').format(pickdate);
                                 });
                               }
                             },
@@ -547,8 +542,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                           ),
                           DropdownButton(
                             value: dropdownValue4,
-                            items: <String>["Male", "Female"]
-                                .map<DropdownMenuItem<String>>((String value) {
+                            items: <String>["Male", "Female"].map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text(value),
@@ -573,8 +567,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                           Center(
                               child: Text(
                             "Data Pembeli 4 : ",
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
+                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                           )),
                           const SizedBox(
                             height: 20,
@@ -616,9 +609,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                               }
                               return null;
                             },
-                            inputFormatters: [
-                              FilteringTextInputFormatter.digitsOnly
-                            ],
+                            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                             maxLines: 1,
                             // obscureText: true,
                             decoration: InputDecoration(
@@ -638,10 +629,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                           ),
                           TextFormField(
                             controller: email4,
-                            validator: (value) =>
-                                EmailValidator.validate(value!)
-                                    ? null
-                                    : "Please enter a valid email",
+                            validator: (value) => EmailValidator.validate(value!) ? null : "Please enter a valid email",
                             maxLines: 1,
                             // obscureText: true,
                             decoration: InputDecoration(
@@ -668,8 +656,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                                   lastDate: DateTime(2040));
                               if (pickdate != null) {
                                 setState(() {
-                                  tanggallahir4.text =
-                                      DateFormat('yyyy-MM-dd').format(pickdate);
+                                  tanggallahir4.text = DateFormat('yyyy-MM-dd').format(pickdate);
                                 });
                               }
                             },
@@ -699,8 +686,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                           ),
                           DropdownButton(
                             value: dropdownValue5,
-                            items: <String>["Male", "Female"]
-                                .map<DropdownMenuItem<String>>((String value) {
+                            items: <String>["Male", "Female"].map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text(value),
@@ -722,8 +708,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                             onPressed: () async {
                               if (_formKey.currentState!.validate()) {
                                 if (data_store.read("acara") == "FIPFEST") {
-                                  Get.defaultDialog(
-                                      content: CircularProgressIndicator());
+                                  Get.defaultDialog(content: CircularProgressIndicator());
                                   int jumlah_ticket = int.parse(dropdownValue);
                                   List<String> namaList = <String>[];
                                   List<String> noList = <String>[];
@@ -742,8 +727,7 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                                     tanggalList.add(tanggallahir2.text);
                                     kelaminList.add(dropdownValue3);
                                   }
-                                  if (dropdownValue == "3" ||
-                                      dropdownValue == "4") {
+                                  if (dropdownValue == "3" || dropdownValue == "4") {
                                     namaList.add(nama3.text);
                                     emailList.add(email3.text);
                                     noList.add(nohp3.text);
@@ -766,26 +750,19 @@ class _Fipfest_FORM_TICKETState extends State<Fipfest_FORM_TICKET> {
                                       "email": emailList.elementAt(i),
                                       "tanggal_lahir": tanggalList.elementAt(i),
                                       "jenis_kelamin": kelaminList.elementAt(i),
-                                      "jenis_tiket":
-                                          data_store.read('jenis_tiket'),
+                                      "jenis_tiket": data_store.read('jenis_tiket'),
                                     });
                                   }
-                                  var data = await _provider.post4(
-                                      data_store.read('token'), data_send);
+                                  var data = await _provider.post4(data_store.read('token'), data_send);
                                   if (data['status'] == "success") {
                                     Get.offAllNamed("/fipfest/ticket_list");
                                   } else {
-                                    Get.defaultDialog(
-                                        content: Text(
-                                            "Maksimum pembelian 4 tiket dalam 1 akun!"));
+                                    Get.defaultDialog(content: Text("Maksimum pembelian 4 tiket dalam 1 akun!"));
                                     Get.offAllNamed("/fipfest");
                                   }
                                 } else {
-                                  Get.defaultDialog(
-                                          content: Text(
-                                              "Silahkan login ulang untuk akun khusus FIPFEST!"))
-                                      .then((value) => Get.offAndToNamed(
-                                          "/fipfest/loginpage"));
+                                  Get.defaultDialog(content: Text("Silahkan login ulang untuk akun khusus FIPFEST!"))
+                                      .then((value) => Get.offAndToNamed("/fipfest/loginpage"));
                                 }
                               }
                             },
