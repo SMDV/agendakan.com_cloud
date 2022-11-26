@@ -154,27 +154,152 @@ class _ListTicketFipfestState extends State<ListTicketFipfest> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text("Presale 2 Ticket status (Admin only)"),
-                          Row(
-                            children: [
-                              Text("Sisa"),
-                              Text(" - "),
-                              Text("Terjual")
-                            ],
+                          Text("Ticket status (Admin only)"),
+                          SizedBox(
+                            height: 5,
                           ),
                           Row(
                             children: [
-                              Text(
-                                _dataControll._sisa,
-                                style: TextStyle(color: Colors.red),
+                              Icon(FontAwesomeIcons.angleLeft),
+                              Container(
+                                alignment: Alignment.center,
+                                width: MediaQuery.of(context).size.width / 2,
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    children: [
+                                      Column(
+                                        children: [
+                                          Row(
+                                            children: [Text("Presale 3")],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text("Sisa"),
+                                              Text(" - "),
+                                              Text("Terjual")
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                _dataControll._presale3sisa,
+                                                style: TextStyle(
+                                                    color: Colors.red),
+                                              ),
+                                              Text("/"),
+                                              Text(
+                                                _dataControll._presale3sold,
+                                                style: TextStyle(
+                                                    color: Colors.green),
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        width: 15,
+                                      ),
+                                      Column(
+                                        children: [
+                                          Row(
+                                            children: [Text("SD")],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text("Sisa"),
+                                              Text(" - "),
+                                              Text("Terjual")
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                _dataControll._sd1,
+                                                style: TextStyle(
+                                                    color: Colors.red),
+                                              ),
+                                              Text("/"),
+                                              Text(
+                                                _dataControll._sd2,
+                                                style: TextStyle(
+                                                    color: Colors.green),
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        width: 15,
+                                      ),
+                                      Column(
+                                        children: [
+                                          Row(
+                                            children: [Text("SMP")],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text("Sisa"),
+                                              Text(" - "),
+                                              Text("Terjual")
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                _dataControll._smp1,
+                                                style: TextStyle(
+                                                    color: Colors.red),
+                                              ),
+                                              Text("/"),
+                                              Text(
+                                                _dataControll._smp2,
+                                                style: TextStyle(
+                                                    color: Colors.green),
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        width: 15,
+                                      ),
+                                      Column(
+                                        children: [
+                                          Row(
+                                            children: [Text("SMA")],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text("Sisa"),
+                                              Text(" - "),
+                                              Text("Terjual")
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                _dataControll._sma1,
+                                                style: TextStyle(
+                                                    color: Colors.red),
+                                              ),
+                                              Text("/"),
+                                              Text(
+                                                _dataControll._sma2,
+                                                style: TextStyle(
+                                                    color: Colors.green),
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
-                              Text("/"),
-                              Text(
-                                _dataControll._sold,
-                                style: TextStyle(color: Colors.green),
-                              )
+                              Icon(FontAwesomeIcons.angleRight),
                             ],
-                          )
+                          ),
                         ],
                       )
                     ],
@@ -330,8 +455,14 @@ class GetDataController extends GetxController with StateMixin {
   List<dynamic> _data = [].obs;
   FipFest_API _provider = FipFest_API();
   final data_store = GetStorage();
-  String _sisa = "";
-  String _sold = "";
+  String _presale3sisa = "";
+  String _presale3sold = "";
+  String _sd1 = "";
+  String _sd2 = "";
+  String _smp1 = "";
+  String _smp2 = "";
+  String _sma1 = "";
+  String _sma2 = "";
   void reSync() {
     change(null, status: RxStatus.loading());
     change(null, status: RxStatus.success());
@@ -352,8 +483,14 @@ class GetDataController extends GetxController with StateMixin {
       if (apiData == null || apiData["data"] == null) {
         change(null, status: RxStatus.empty());
       } else {
-        _sisa = apiData['presale2-sisa'].toString();
-        _sold = apiData['presale2-terjual'].toString();
+        _presale3sisa = apiData['presale3-sisa'].toString();
+        _presale3sold = apiData['presale3-terjual'].toString();
+        _sd1 = apiData['sd-sisa'].toString();
+        _sd2 = apiData['sd-terjual'].toString();
+        _smp1 = apiData['smp-sisa'].toString();
+        _smp2 = apiData['smp-terjual'].toString();
+        _sma1 = apiData['sma-sisa'].toString();
+        _sma2 = apiData['sma-terjual'].toString();
         _data = apiData["data"];
         change(null, status: RxStatus.success());
       }
