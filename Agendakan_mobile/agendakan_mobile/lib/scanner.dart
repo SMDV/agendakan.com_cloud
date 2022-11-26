@@ -217,8 +217,8 @@ class _ScannerPageState extends State<ScannerPage> {
 
       if (!mounted) return;
       if (barcode.isNotEmpty) {
-        var _dataTamu = await _provider.get(
-            "https://weekfest.agendakan.com/api/tiket-scan-mobile/" + barcode);
+        var _dataTamu = await _provider
+            .get("https://GKM.agendakan.com/api/tiket-scan-mobile/" + barcode);
         print(_dataTamu);
         if (_dataTamu == null || _dataTamu == []) {
           if (_dataTamu["data"] == null || _dataTamu["data"] == []) {
