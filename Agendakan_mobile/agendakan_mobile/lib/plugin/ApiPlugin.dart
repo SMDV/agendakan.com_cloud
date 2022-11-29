@@ -101,8 +101,7 @@ class ApiPlugin {
   Future<dynamic> post8(String id, String jenis) async {
     var responseJson;
     try {
-      var url_uri =
-          Uri.parse("https://weekfest.agendakan.com/api/tiket-acc-mobile");
+      var url_uri = Uri.parse("https://GKM.agendakan.com/api/tiket-acc-mobile");
       Get.back();
       Get.defaultDialog(
           title: "Mohon Menunggu", content: CircularProgressIndicator());

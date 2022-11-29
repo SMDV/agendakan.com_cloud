@@ -88,20 +88,20 @@ class _ScannerPageState extends State<ScannerPage> {
                       fontSize: 30,
                       color: Color.fromRGBO(255, 156, 26, 1),
                       fontWeight: FontWeight.bold)),
-              if (addons != "non-addons") ...[
-                Text('($addons)',
-                    style: TextStyle(
-                        fontFamily: 'QuickSand',
-                        fontSize: 30,
-                        color: Color.fromRGBO(255, 156, 26, 1),
-                        fontWeight: FontWeight.bold)),
-              ],
-              Text('($jenistiketSpesial)',
-                  style: TextStyle(
-                      fontFamily: 'QuickSand',
-                      fontSize: 30,
-                      color: Color.fromRGBO(255, 156, 26, 1),
-                      fontWeight: FontWeight.bold)),
+              // if (addons != "non-addons") ...[
+              //   Text('($addons)',
+              //       style: TextStyle(
+              //           fontFamily: 'QuickSand',
+              //           fontSize: 30,
+              //           color: Color.fromRGBO(255, 156, 26, 1),
+              //           fontWeight: FontWeight.bold)),
+              // ],
+              // Text('($jenistiketSpesial)',
+              //     style: TextStyle(
+              //         fontFamily: 'QuickSand',
+              //         fontSize: 30,
+              //         color: Color.fromRGBO(255, 156, 26, 1),
+              //         fontWeight: FontWeight.bold)),
               Text('status kehadiran:',
                   style: TextStyle(
                       fontFamily: 'QuickSand',
