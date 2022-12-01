@@ -1,10 +1,8 @@
-import 'package:agendakan_mobile/BarcodeScannerWithoutController.dart';
 import 'package:agendakan_mobile/home.dart';
 import 'package:agendakan_mobile/scanner.dart';
-import 'package:agendakan_mobile/ticketList.dart';
+import 'package:agendakan_mobile/ticketListNew.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:flutter/services.dart';
 
@@ -47,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
       getPages: [
         GetPage(name: "/home", page: () => HomePage()),
         GetPage(name: '/scan-qr', page: () => ScannerPage()),
-        GetPage(name: '/tiket-list', page: () => TicketList())
+        GetPage(name: '/tiket-list', page: () => TicketListNew())
       ],
     );
   }

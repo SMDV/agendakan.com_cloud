@@ -44,61 +44,55 @@ class TicketList extends StatelessWidget {
           color: Colors.white,
           child: ChangeNotifierProvider<DataTableProvider>(
             create: (context) => DataTableProvider(),
-            child: Consumer<DataTableProvider>(
-                builder: (context, provider, child) {
+            child: Consumer<DataTableProvider>(builder: (context, provider, child) {
               if (provider.data == null) {
                 provider.getData(context);
                 return Center(
                   child: CircularProgressIndicator(),
                 );
               }
-              // else if (provider.data[0]['id'] == null) {
-              //   provider.getData(context);
-              //   return Center(
-              //     child: Container(
-              //       child: Text("Belum ada data transaksi!"),
-              //     ),
-              //   );
-              // }
-              return SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: DataTable(
-                  columnSpacing: 50,
-                  columns: [
-                    DataColumn(
-                        label: Container(
-                            // width: MediaQuery.of(context).size.width / 6,
-                            child: Text("ID Ticket"))),
-                    DataColumn(
-                        label: Container(
-                            // width: MediaQuery.of(context).size.width / 6,
-                            child: Text("ID Pembelian"))),
-                    DataColumn(
-                        label: Container(
-                            // width: MediaQuery.of(context).size.width / 6,
-                            child: Text("Tgl Kehadiran"))),
-                    DataColumn(
-                        label: Container(
-                            // width: MediaQuery.of(context).size.width / 6,
-                            child: Text("Status"))),
-                  ],
-                  rows: provider.data
-                      .map<DataRow>((element) => DataRow(
-                            cells: [
-                              DataCell(Text(element['id'].toString())),
-                              DataCell(
-                                  Text(element['id_pembelian'].toString())),
-                              DataCell(Text(
-                                  element['tanggal_kehadiran'].toString())),
-                              DataCell(
-                                  Text(element['status_kehadiran'].toString())),
-                              // DataCell(customDatacell(
-                              //     element['status_pembelian'].toString())),
-                            ],
-                          ))
-                      .toList(),
-                ),
+              return Center(
+                child: CircularProgressIndicator(),
               );
+              // return SingleChildScrollView(
+              //   scrollDirection: Axis.horizontal,
+              //   child: DataTable(
+              //     columnSpacing: 50,
+              //     columns: [
+              //       DataColumn(
+              //           label: Container(
+              //               // width: MediaQuery.of(context).size.width / 6,
+              //               child: Text("ID Ticket"))),
+              //       DataColumn(
+              //           label: Container(
+              //               // width: MediaQuery.of(context).size.width / 6,
+              //               child: Text("ID Pembelian"))),
+              //       DataColumn(
+              //           label: Container(
+              //               // width: MediaQuery.of(context).size.width / 6,
+              //               child: Text("Tgl Kehadiran"))),
+              //       DataColumn(
+              //           label: Container(
+              //               // width: MediaQuery.of(context).size.width / 6,
+              //               child: Text("Status"))),
+              //     ],
+              //     rows: provider.data
+              //         .map<DataRow>((element) => DataRow(
+              //               cells: [
+              //                 DataCell(Text(element['id'].toString())),
+              //                 DataCell(
+              //                     Text(element['id_pembelian'].toString())),
+              //                 DataCell(Text(
+              //                     element['tanggal_kehadiran'].toString())),
+              //                 DataCell(
+              //                     Text(element['status_kehadiran'].toString())),
+              //                 // DataCell(customDatacell(
+              //                 //     element['status_pembelian'].toString())),
+              //               ],
+              //             ))
+              //         .toList(),
+              //   ),
+              // );
             }),
           )),
     );

@@ -14,11 +14,8 @@ class HomePage extends StatelessWidget {
         children: [
           Spacer(),
           Text('MENU',
-              style: TextStyle(
-                  fontFamily: 'QuickSand',
-                  fontSize: 40,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700)),
+              style:
+                  TextStyle(fontFamily: 'QuickSand', fontSize: 40, color: Colors.white, fontWeight: FontWeight.w700)),
           SizedBox(
             height: 40,
           ),
@@ -37,10 +34,13 @@ class HomePage extends StatelessWidget {
                 width: 40,
               ),
               InkWell(
+                  onTap: () {
+                    Get.toNamed("/tiket-list");
+                  },
                   child: ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child: Image.asset('assets/icons_02.jpg', scale: 2.7),
-              )),
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.asset('assets/icons_02.jpg', scale: 2.7),
+                  )),
             ],
           ),
           Spacer(),
