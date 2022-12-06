@@ -11,7 +11,7 @@ import 'dart:async';
 
 class ApiPlugin {
   //final String _baseUrl = "http://103.121.17.201:8000";
-  final String _baseUrl = "https://gkm.agendakan.com/api";
+  final String _baseUrl = "https://fipfest.agendakan.com/api";
   var data_store = GetStorage();
 
   Future<dynamic> get(String url) async {

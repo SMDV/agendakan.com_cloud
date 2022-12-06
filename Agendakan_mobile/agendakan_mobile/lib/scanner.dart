@@ -51,16 +51,10 @@ class _ScannerPageState extends State<ScannerPage> {
               Spacer(),
               Text('SELAMAT',
                   style: TextStyle(
-                      fontFamily: 'QuickSand',
-                      fontSize: 32,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold)),
+                      fontFamily: 'QuickSand', fontSize: 32, color: Colors.white, fontWeight: FontWeight.bold)),
               Text('DATANG!',
                   style: TextStyle(
-                      fontFamily: 'QuickSand',
-                      fontSize: 32,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold)),
+                      fontFamily: 'QuickSand', fontSize: 32, color: Colors.white, fontWeight: FontWeight.bold)),
               SizedBox(
                 height: 110,
               ),
@@ -104,10 +98,7 @@ class _ScannerPageState extends State<ScannerPage> {
               //         fontWeight: FontWeight.bold)),
               Text('status kehadiran:',
                   style: TextStyle(
-                      fontFamily: 'QuickSand',
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold)),
+                      fontFamily: 'QuickSand', fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold)),
               Text('($status)',
                   style: TextStyle(
                       fontFamily: 'QuickSand',
@@ -127,10 +118,7 @@ class _ScannerPageState extends State<ScannerPage> {
                 ),
                 Text('Approve Ticket :',
                     style: TextStyle(
-                        fontFamily: 'QuickSand',
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold)),
+                        fontFamily: 'QuickSand', fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold)),
                 SizedBox(
                   height: 15,
                 ),
@@ -217,8 +205,7 @@ class _ScannerPageState extends State<ScannerPage> {
 
       if (!mounted) return;
       if (barcode.isNotEmpty) {
-        var _dataTamu = await _provider
-            .get("https://GKM.agendakan.com/api/tiket-scan-mobile/" + barcode);
+        var _dataTamu = await _provider.get("https://fipfest.agendakan.com/api/tiket-scan-mobile/" + barcode);
         print(_dataTamu);
         if (_dataTamu == null || _dataTamu == []) {
           if (_dataTamu["data"] == null || _dataTamu["data"] == []) {
@@ -231,8 +218,7 @@ class _ScannerPageState extends State<ScannerPage> {
         namaTamu = _dataTamu["data"][0]['nama_tiket'];
         noktp = _dataTamu["data"][0]['email'];
         idtiket = _dataTamu["data"][0]['id'].toString();
-        if (_dataTamu["data"][0]["jenis_kupon"] != null &&
-            _dataTamu["data"][0]["jenis_kupon"] == "spesial") {
+        if (_dataTamu["data"][0]["jenis_kupon"] != null && _dataTamu["data"][0]["jenis_kupon"] == "spesial") {
           jenistiketSpesial = "Berlaku untuk 1 Orang";
           addons = "non-addons";
         } else if (_dataTamu["data"][0]["addons"] == "1") {

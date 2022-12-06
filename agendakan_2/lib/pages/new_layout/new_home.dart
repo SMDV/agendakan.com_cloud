@@ -49,10 +49,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                   title: Center(
                       child: Text(
                     "TICKET LIST",
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'Syne',
-                        fontWeight: FontWeight.w800),
+                    style: TextStyle(fontSize: 20, fontFamily: 'Syne', fontWeight: FontWeight.w800),
                   )),
                   onTap: () {
                     if (data_store.read("isAdmin") == 1) {
@@ -69,10 +66,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                   title: Center(
                       child: Text(
                     "LOG OUT",
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'Syne',
-                        fontWeight: FontWeight.w800),
+                    style: TextStyle(fontSize: 20, fontFamily: 'Syne', fontWeight: FontWeight.w800),
                   )),
                   onTap: () {
                     data_store.remove('token');
@@ -83,16 +77,12 @@ class _HomeLayoutState extends State<HomeLayout> {
               ),
             ] else ...[
               Container(
-                decoration: BoxDecoration(
-                    border: Border(top: BorderSide(), bottom: BorderSide())),
+                decoration: BoxDecoration(border: Border(top: BorderSide(), bottom: BorderSide())),
                 child: ListTile(
                   title: Center(
                       child: Text(
                     "LOG IN",
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'Syne',
-                        fontWeight: FontWeight.w800),
+                    style: TextStyle(fontSize: 20, fontFamily: 'Syne', fontWeight: FontWeight.w800),
                   )),
                   onTap: () {
                     Get.offAllNamed("/loginpage");
@@ -122,9 +112,7 @@ class _HomeLayoutState extends State<HomeLayout> {
               height: 636,
               // width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("images/bg_home_default.jpg"),
-                      fit: BoxFit.fitWidth)),
+                  image: DecorationImage(image: AssetImage("images/bg_home_default.jpg"), fit: BoxFit.fitWidth)),
               child: Column(children: [
                 Row(children: [
                   Container(
@@ -171,8 +159,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                         decoration: BoxDecoration(
                             color: Colors.white,
                             border: Border.all(color: Colors.blue, width: 2),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
+                            borderRadius: BorderRadius.all(Radius.circular(10))),
                       ),
                     ),
                     SizedBox(
@@ -195,8 +182,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                         decoration: BoxDecoration(
                             color: Colors.blue,
                             border: Border.all(color: Colors.blue, width: 2),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
+                            borderRadius: BorderRadius.all(Radius.circular(10))),
                       ),
                     ),
                   ] else ...[
@@ -219,8 +205,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                         decoration: BoxDecoration(
                             color: Colors.blue,
                             border: Border.all(color: Colors.blue, width: 2),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
+                            borderRadius: BorderRadius.all(Radius.circular(10))),
                       ),
                     ),
                   ],
@@ -239,19 +224,14 @@ class _HomeLayoutState extends State<HomeLayout> {
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "Agendakan.com",
-                            style: TextStyle(
-                                fontFamily: 'Josefin Sans',
-                                fontSize: 40,
-                                color: Colors.white),
+                            style: TextStyle(fontFamily: 'Josefin Sans', fontSize: 40, color: Colors.white),
                           ),
                         ),
                         SizedBox(
                           height: 20,
                         ),
                         Align(
-                            alignment: Alignment.centerLeft,
-                            child: Image(
-                                image: AssetImage("images/line_header.png"))),
+                            alignment: Alignment.centerLeft, child: Image(image: AssetImage("images/line_header.png"))),
                         SizedBox(
                           height: 40,
                         ),
@@ -259,10 +239,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "Bersama agendakan.com\n“Kelola tiket dan informasi event-mu dengan lebih mudah”",
-                            style: TextStyle(
-                                fontSize: 40,
-                                fontFamily: 'Roboto',
-                                color: Colors.white),
+                            style: TextStyle(fontSize: 40, fontFamily: 'Roboto', color: Colors.white),
                           ),
                         ),
                       ],
@@ -294,16 +271,13 @@ class _HomeLayoutState extends State<HomeLayout> {
                               alignment: Alignment.center,
                               child: Text(
                                 "Featured",
-                                style: TextStyle(
-                                    fontSize: 12, color: Colors.white),
+                                style: TextStyle(fontSize: 12, color: Colors.white),
                               ),
                             ),
                             decoration: BoxDecoration(
                                 color: Colors.blue,
-                                border:
-                                    Border.all(color: Colors.blue, width: 2),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5))),
+                                border: Border.all(color: Colors.blue, width: 2),
+                                borderRadius: BorderRadius.all(Radius.circular(5))),
                           ),
                           SizedBox(
                             height: 20,
@@ -312,11 +286,8 @@ class _HomeLayoutState extends State<HomeLayout> {
                               height: 50,
                               width: 200,
                               child: Text(
-                                "Gebyar Kreativitas Mahasiswa",
-                                style: TextStyle(
-                                    fontFamily: "Roboto",
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold),
+                                "FIPFEST",
+                                style: TextStyle(fontFamily: "Roboto", fontSize: 24, fontWeight: FontWeight.bold),
                               )),
                           SizedBox(
                             height: 10,
@@ -331,7 +302,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                               SizedBox(
                                 width: 5,
                               ),
-                              Text("2 Desember 2022"),
+                              Text("8 Desember 2022"),
                               SizedBox(
                                 width: 15,
                               ),
@@ -353,14 +324,14 @@ class _HomeLayoutState extends State<HomeLayout> {
                             width: 500,
                             height: 80,
                             child: Text(
-                                "GKM adalah salah satu program kerja dari departemen BMP BEM FEB UM yang bentuk kegiatan nya adalah berupa penampilan karya-karya dari mahasiswa dan juga subbidang yang ada di FEB UM yang dikemas dalam bentuk konser. GKM juga merupakan salah satu rangkaian dari PKKMB yang dimana GKM ialah puncak acara untuk Mahasiswa Baru itu sendiri. Selain itu GKM bertujuan untuk meningkatkan eksistensi FEB kepada khalayak UM khususnya dan khalayak umum pada umumnya. Dalam kegiatannya GKM selalu menghadirkan minimal 2 GuestStar  Ibukota setiap tahunnya dari awal GKM ini terbentuk."),
+                                "FIP FEST 2022 merupakan salah satu program kerja dari BEM FIP UM 2022 berupa konser musik dengan mengundang Guest Star berskala nasional. Selain itu, pada FIP FEST 2022 juga terdapat kegiatan bazar kuliner, kegiatan sosial dan pendidikan, serta penampilan-penampilan dari mahasiswa FIP UM"),
                           ),
                           SizedBox(
                             height: 11,
                           ),
                           InkWell(
                             onTap: () {
-                              Get.toNamed("/gkm");
+                              Get.toNamed("/fipfest");
                             },
                             child: Text(
                               "Lihat lebih banyak",
@@ -385,11 +356,9 @@ class _HomeLayoutState extends State<HomeLayout> {
                     ),
                     Spacer(),
                     Container(
-                      child: Image(
-                          image: AssetImage("images/gkm_poster_main.png")),
-                      decoration: BoxDecoration(
-                          color: Colors.orange,
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      child: Image(image: AssetImage("images/fipfest_poster_main.png")),
+                      decoration:
+                          BoxDecoration(color: Colors.orange, borderRadius: BorderRadius.all(Radius.circular(10))),
                       height: 355,
                       width: 633,
                       // color: Colors.orange,
@@ -397,9 +366,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                   ]),
                   height: 355,
                   width: 1271,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                      color: Colors.white),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(15)), color: Colors.white),
                   // color: Colors.white,
                 ),
                 Spacer(),
@@ -415,8 +382,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                       width: 127,
                       height: 35,
                       decoration: BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(color: Colors.blue, width: 2)),
+                        border: Border(bottom: BorderSide(color: Colors.blue, width: 2)),
                       ),
                     ),
                     SizedBox(
@@ -456,9 +422,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                   ]),
                   height: 79,
                   width: 1271,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                      color: Colors.white),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(15)), color: Colors.white),
                   // color: Colors.white,
                 ),
                 Spacer(),
@@ -495,8 +459,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                                       "title": "WEEKFEST",
                                       "alamat": "Balai Pemuda\nSurabaya",
                                       "time": "18 - 20 Desember 2022",
-                                      "image":
-                                          "images/weekfest_poster_main.png",
+                                      "image": "images/weekfest_poster_main.png",
                                       "status": "BUY NOW",
                                       "link": "/weekfest"
                                     },
@@ -504,8 +467,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                                       "title": "Signaturee",
                                       "alamat": "Kusuma Agro Wisata",
                                       "time": "23 Juli 2022",
-                                      "image":
-                                          "images/signatur_poster_main.jpg",
+                                      "image": "images/signatur_poster_main.jpg",
                                       "status": "SOLD!",
                                       "link": "/SignatureeFestival"
                                     },
@@ -524,9 +486,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                                           child: Row(
                                             children: [
                                               Expanded(
-                                                child: Image(
-                                                    image: AssetImage(
-                                                        e["image"].toString())),
+                                                child: Image(image: AssetImage(e["image"].toString())),
                                                 flex: 3,
                                               ),
                                               SizedBox(
@@ -534,28 +494,19 @@ class _HomeLayoutState extends State<HomeLayout> {
                                               ),
                                               Expanded(
                                                 child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: [
                                                     Text(
                                                       e["title"].toString(),
-                                                      style: TextStyle(
-                                                          fontSize: 22,
-                                                          fontWeight:
-                                                              FontWeight.bold),
+                                                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                                                     ),
                                                     SizedBox(
                                                       height: 20,
                                                     ),
                                                     Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      crossAxisAlignment: CrossAxisAlignment.center,
                                                       children: [
                                                         Icon(
                                                           Icons.location_on,
@@ -566,20 +517,14 @@ class _HomeLayoutState extends State<HomeLayout> {
                                                           width: 3,
                                                         ),
                                                         Text(
-                                                          e["alamat"]
-                                                              .toString(),
-                                                          style: TextStyle(
-                                                              fontSize: 15),
+                                                          e["alamat"].toString(),
+                                                          style: TextStyle(fontSize: 15),
                                                         ),
                                                       ],
                                                     ),
                                                     Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      crossAxisAlignment: CrossAxisAlignment.center,
                                                       children: [
                                                         Icon(
                                                           Icons.calendar_today,
@@ -589,8 +534,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                                                         SizedBox(
                                                           width: 3,
                                                         ),
-                                                        Text(e["time"]
-                                                            .toString()),
+                                                        Text(e["time"].toString()),
                                                       ],
                                                     ),
                                                     SizedBox(
@@ -598,34 +542,22 @@ class _HomeLayoutState extends State<HomeLayout> {
                                                     ),
                                                     InkWell(
                                                       onTap: () {
-                                                        Get.toNamed(e["link"]
-                                                            .toString());
+                                                        Get.toNamed(e["link"].toString());
                                                       },
                                                       child: Container(
                                                         height: 34,
                                                         width: 94,
                                                         child: Align(
-                                                          alignment:
-                                                              Alignment.center,
+                                                          alignment: Alignment.center,
                                                           child: Text(
-                                                            e["status"]
-                                                                .toString(),
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .blue),
+                                                            e["status"].toString(),
+                                                            style: TextStyle(color: Colors.blue),
                                                           ),
                                                         ),
                                                         decoration: BoxDecoration(
                                                             color: Colors.white,
-                                                            border: Border.all(
-                                                                color:
-                                                                    Colors.blue,
-                                                                width: 2),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            10))),
+                                                            border: Border.all(color: Colors.blue, width: 2),
+                                                            borderRadius: BorderRadius.all(Radius.circular(10))),
                                                       ),
                                                     ),
                                                   ],
@@ -634,30 +566,22 @@ class _HomeLayoutState extends State<HomeLayout> {
                                               )
                                             ],
                                           ),
-                                          margin:
-                                              EdgeInsets.fromLTRB(40, 0, 40, 0),
-                                          padding:
-                                              EdgeInsets.fromLTRB(25, 0, 10, 0),
+                                          margin: EdgeInsets.fromLTRB(40, 0, 40, 0),
+                                          padding: EdgeInsets.fromLTRB(25, 0, 10, 0),
                                           decoration: BoxDecoration(
                                               boxShadow: [
                                                 BoxShadow(
-                                                  color: Colors.grey
-                                                      .withOpacity(0.5),
+                                                  color: Colors.grey.withOpacity(0.5),
                                                   spreadRadius: 5,
                                                   blurRadius: 7,
-                                                  offset: Offset(0,
-                                                      3), // changes position of shadow
+                                                  offset: Offset(0, 3), // changes position of shadow
                                                 ),
                                               ],
                                               color: Colors.white,
-                                              border: Border.all(
-                                                  color: Color(0xff4181ED),
-                                                  width: 3),
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(50))),
+                                              border: Border.all(color: Color(0xff4181ED), width: 3),
+                                              borderRadius: BorderRadius.all(Radius.circular(50))),
                                         ),
-                                        width:
-                                            MediaQuery.of(context).size.width,
+                                        width: MediaQuery.of(context).size.width,
                                       );
                                     });
                                   }).toList(),
@@ -677,8 +601,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                             onTap: () {
                               _carouselController.previousPage();
                             },
-                            child: Image(
-                                image: AssetImage("images/left_vector.png")),
+                            child: Image(image: AssetImage("images/left_vector.png")),
                           ),
                         ),
                         Container(
@@ -688,8 +611,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                               onTap: () {
                                 _carouselController.nextPage();
                               },
-                              child: Image(
-                                  image: AssetImage("images/right_vector.png")),
+                              child: Image(image: AssetImage("images/right_vector.png")),
                             ),
                           ),
                           width: 1300,
@@ -1120,9 +1042,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                 )
               ]),
               // color: Colors.white,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border(bottom: BorderSide(color: Colors.black))),
+              decoration: BoxDecoration(color: Colors.white, border: Border(bottom: BorderSide(color: Colors.black))),
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.width / 8,
             ),
@@ -1141,14 +1061,10 @@ class _HomeLayoutState extends State<HomeLayout> {
                 Container(
                   padding: EdgeInsets.fromLTRB(40, 10, 0, 10),
                   // color: Colors.white,
-                  child: Image(
-                      image: AssetImage("images/gkm_poster_main.png"),
-                      fit: BoxFit.fitHeight),
+                  child: Image(image: AssetImage("images/fipfest_poster_main.png"), fit: BoxFit.fitHeight),
                   decoration: BoxDecoration(
                       color: Colors.orange,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          bottomLeft: Radius.circular(20))),
+                      borderRadius: BorderRadius.only(topLeft: Radius.circular(20), bottomLeft: Radius.circular(20))),
                   width: MediaQuery.of(context).size.width / 1.9,
                   height: MediaQuery.of(context).size.width / 1.5,
                 ),
@@ -1159,7 +1075,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "Gebyar Kreativitas Mahasiswa",
+                        "FIPFEST",
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -1179,11 +1095,8 @@ class _HomeLayoutState extends State<HomeLayout> {
                             width: MediaQuery.of(context).size.width / 45,
                           ),
                           Text(
-                            "2 December 2022",
-                            style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.width / 30,
-                                color: Colors.white),
+                            "8 December 2022",
+                            style: TextStyle(fontSize: MediaQuery.of(context).size.width / 30, color: Colors.white),
                           ),
                         ],
                       ),
@@ -1202,10 +1115,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                           ),
                           Text(
                             "Graha Cakrawala",
-                            style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.width / 30,
-                                color: Colors.white),
+                            style: TextStyle(fontSize: MediaQuery.of(context).size.width / 30, color: Colors.white),
                           ),
                         ],
                       ),
@@ -1232,14 +1142,9 @@ class _HomeLayoutState extends State<HomeLayout> {
                   padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                   child: Text(
                     "All Event",
-                    style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Colors.blue, fontSize: 22, fontWeight: FontWeight.bold),
                   ),
-                  decoration: BoxDecoration(
-                      border: Border(
-                          bottom: BorderSide(color: Colors.blue, width: 3))),
+                  decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.blue, width: 3))),
                 ),
                 width: 145,
               ),
@@ -1297,8 +1202,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                           child: Row(
                             children: [
                               Expanded(
-                                child: Image(
-                                    image: AssetImage(e["image"].toString())),
+                                child: Image(image: AssetImage(e["image"].toString())),
                                 flex: 3,
                               ),
                               SizedBox(
@@ -1311,18 +1215,14 @@ class _HomeLayoutState extends State<HomeLayout> {
                                   children: [
                                     Text(
                                       e["title"].toString(),
-                                      style: TextStyle(
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.bold),
+                                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                                     ),
                                     SizedBox(
                                       height: 20,
                                     ),
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         Icon(
                                           Icons.location_on,
@@ -1339,10 +1239,8 @@ class _HomeLayoutState extends State<HomeLayout> {
                                       ],
                                     ),
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         Icon(
                                           Icons.calendar_today,
@@ -1369,16 +1267,13 @@ class _HomeLayoutState extends State<HomeLayout> {
                                           alignment: Alignment.center,
                                           child: Text(
                                             e["status"].toString(),
-                                            style:
-                                                TextStyle(color: Colors.blue),
+                                            style: TextStyle(color: Colors.blue),
                                           ),
                                         ),
                                         decoration: BoxDecoration(
                                             color: Colors.white,
-                                            border: Border.all(
-                                                color: Colors.blue, width: 2),
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10))),
+                                            border: Border.all(color: Colors.blue, width: 2),
+                                            borderRadius: BorderRadius.all(Radius.circular(10))),
                                       ),
                                     ),
                                   ],
@@ -1395,15 +1290,12 @@ class _HomeLayoutState extends State<HomeLayout> {
                                   color: Colors.grey.withOpacity(0.5),
                                   spreadRadius: 5,
                                   blurRadius: 7,
-                                  offset: Offset(
-                                      0, 3), // changes position of shadow
+                                  offset: Offset(0, 3), // changes position of shadow
                                 ),
                               ],
                               color: Colors.white,
-                              border: Border.all(
-                                  color: Color(0xff4181ED), width: 3),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(50))),
+                              border: Border.all(color: Color(0xff4181ED), width: 3),
+                              borderRadius: BorderRadius.all(Radius.circular(50))),
                         ),
                         width: MediaQuery.of(context).size.width,
                       );
@@ -1428,14 +1320,9 @@ class _HomeLayoutState extends State<HomeLayout> {
                   padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                   child: Text(
                     "Available",
-                    style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Colors.blue, fontSize: 22, fontWeight: FontWeight.bold),
                   ),
-                  decoration: BoxDecoration(
-                      border: Border(
-                          bottom: BorderSide(color: Colors.blue, width: 3))),
+                  decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.blue, width: 3))),
                 ),
                 width: 149,
               ),
@@ -1447,28 +1334,12 @@ class _HomeLayoutState extends State<HomeLayout> {
               child: CarouselSlider(
                   items: [
                     {
-                      "title": "Gebyar Kreativitas\nMahasiswa",
-                      "alamat": "Graha Cakrawala",
-                      "time": "2 Desember 2022",
-                      "image": "images/gkm_poster_main.png",
-                      "status": "BUY NOW",
-                      "link": "/gkm"
-                    },
-                    {
                       "title": "FIPFEST",
                       "alamat": "Graha Cakrawala",
                       "time": "8 Desember 2022",
                       "image": "images/fipfest_poster_main.png",
                       "status": "BUY NOW",
                       "link": "/fipfest"
-                    },
-                    {
-                      "title": "WEEKFEST",
-                      "alamat": "Balai Pemuda\nSurabaya",
-                      "time": "18 - 20 Desember 2022",
-                      "image": "images/weekfest_poster_main.png",
-                      "status": "BUY NOW",
-                      "link": "/weekfest"
                     },
                   ].map((e) {
                     return Builder(builder: (context) {
@@ -1477,8 +1348,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                           child: Row(
                             children: [
                               Expanded(
-                                child: Image(
-                                    image: AssetImage(e["image"].toString())),
+                                child: Image(image: AssetImage(e["image"].toString())),
                                 flex: 3,
                               ),
                               SizedBox(
@@ -1491,18 +1361,14 @@ class _HomeLayoutState extends State<HomeLayout> {
                                   children: [
                                     Text(
                                       e["title"].toString(),
-                                      style: TextStyle(
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.bold),
+                                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                                     ),
                                     SizedBox(
                                       height: 20,
                                     ),
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         Icon(
                                           Icons.location_on,
@@ -1519,10 +1385,8 @@ class _HomeLayoutState extends State<HomeLayout> {
                                       ],
                                     ),
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         Icon(
                                           Icons.calendar_today,
@@ -1549,16 +1413,13 @@ class _HomeLayoutState extends State<HomeLayout> {
                                           alignment: Alignment.center,
                                           child: Text(
                                             e["status"].toString(),
-                                            style:
-                                                TextStyle(color: Colors.blue),
+                                            style: TextStyle(color: Colors.blue),
                                           ),
                                         ),
                                         decoration: BoxDecoration(
                                             color: Colors.white,
-                                            border: Border.all(
-                                                color: Colors.blue, width: 2),
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10))),
+                                            border: Border.all(color: Colors.blue, width: 2),
+                                            borderRadius: BorderRadius.all(Radius.circular(10))),
                                       ),
                                     ),
                                   ],
@@ -1575,15 +1436,12 @@ class _HomeLayoutState extends State<HomeLayout> {
                                   color: Colors.grey.withOpacity(0.5),
                                   spreadRadius: 5,
                                   blurRadius: 7,
-                                  offset: Offset(
-                                      0, 3), // changes position of shadow
+                                  offset: Offset(0, 3), // changes position of shadow
                                 ),
                               ],
                               color: Colors.white,
-                              border: Border.all(
-                                  color: Color(0xff4181ED), width: 3),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(50))),
+                              border: Border.all(color: Color(0xff4181ED), width: 3),
+                              borderRadius: BorderRadius.all(Radius.circular(50))),
                         ),
                         width: MediaQuery.of(context).size.width,
                       );
