@@ -8,6 +8,7 @@ import 'package:agendakan_2/pages/fipfest/fipfest_list_ticket.dart';
 import 'package:agendakan_2/pages/fipfest/controller/login_page.dart';
 import 'package:agendakan_2/pages/gkm/gkm_buy_form.dart';
 import 'package:agendakan_2/pages/gkm/gkm_home.dart';
+import 'package:agendakan_2/pages/gkm_2023/gkm_2023_home.dart';
 import 'package:agendakan_2/pages/layout.dart';
 import 'package:agendakan_2/pages/login/login_page.dart';
 import 'package:agendakan_2/pages/mercusuara/layout/MercusuaraHome.dart';
@@ -214,6 +215,10 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: '/weekfest/registerpage',
             page: () => FipfestRegisterPage(title: ''),
+            transition: Transition.fadeIn),
+        GetPage(
+            name: '/gkm_2023',
+            page: () => GKMHome2023(),
             transition: Transition.fadeIn),
       ],
     );
