@@ -14,3 +14,6 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+Version Used
+Flutter (Channel stable, 3.3.0, on Microsoft Windows [Version 10.0.22621.1702], locale en-ID)
