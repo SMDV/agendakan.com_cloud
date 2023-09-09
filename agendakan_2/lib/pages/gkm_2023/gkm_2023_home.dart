@@ -1,3 +1,4 @@
+import 'package:agendakan_2/pages/gkm_2023/Repository/gkm_2023_api.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -15,6 +16,7 @@ class GKMHome2023 extends StatefulWidget {
 }
 
 class _GKMHome2023State extends State<GKMHome2023> {
+  final List<String> priceHardcode = ['*Rp. 139.000', 'Coming Soon', 'Coming Soon', 'Coming Soon'];
   final data_store = GetStorage();
   GlobalKey<ScaffoldState> _key = GlobalKey();
   @override
@@ -38,7 +40,112 @@ class _GKMHome2023State extends State<GKMHome2023> {
               //     image: DecorationImage(
               //         image: AssetImage('images/2023_button_book_now.png'), fit: BoxFit.fill))
             ),
-            onPressed: () {},
+            onPressed: () async {
+              final _provider = GKM_2023_API();
+              dynamic data = await _provider.getAllStatusTicket();
+              print(data);
+              Get.defaultDialog(
+                  title: '',
+                  titleStyle: TextStyle(fontSize: 1),
+                  backgroundColor: Color(0xff808080),
+                  content: Container(
+                      padding: EdgeInsets.all(5),
+                      height: MediaQuery.of(context).size.height / 1.5,
+                      width: MediaQuery.of(context).size.width,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.only(left: 30, right: 30, top: 20),
+                            child: Image(image: AssetImage('images/2023_button_book_now.png')),
+                          ),
+                          Spacer(),
+                          Container(
+                            height: MediaQuery.of(context).size.height / 2.25,
+                            width: MediaQuery.of(context).size.width,
+                            child: GridView.builder(
+                                padding: EdgeInsets.all(20),
+                                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                                    maxCrossAxisExtent: 400,
+                                    childAspectRatio: 4 / 2,
+                                    crossAxisSpacing: 40,
+                                    mainAxisSpacing: 40),
+                                itemCount: 4,
+                                itemBuilder: ((context, index) {
+                                  return GestureDetector(
+                                    onTap: () async {
+                                      final _provider = GKM_2023_API();
+                                      dynamic data = await _provider.getAllStatusTicket();
+                                      if (data['presale${index + 1}'] != 'buka') {
+                                        Get.defaultDialog(
+                                            title: 'Peringatan!',
+                                            content: const Text(
+                                                'Ticket sudah habis, atau penjualan sudah ditutup'));
+                                      } else {
+                                        final data_store = GetStorage();
+                                        if (data_store.read('token') == null) {
+                                        }else{
+
+                                        }
+                                      }
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Color(0xffFFF9E0),
+                                          image: (data['presale${index + 1}'] == 'tutup')
+                                              ? const DecorationImage(
+                                                  image: AssetImage('images/sold_out.png'))
+                                              : null,
+                                          border: Border.all(color: Colors.blue, width: 2.5),
+                                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          FittedBox(
+                                              fit: BoxFit.cover,
+                                              child: Text(
+                                                "PRESALE ${index + 1}",
+                                                style: const TextStyle(
+                                                    fontFamily: 'Montserrat',
+                                                    fontWeight: FontWeight.w800,
+                                                    fontSize: 25,
+                                                    color: Color(0xff4181ED)),
+                                              )),
+                                          const SizedBox(
+                                            height: 15,
+                                          ),
+                                          FittedBox(
+                                              fit: BoxFit.cover,
+                                              child: Text(priceHardcode[index],
+                                                  style: const TextStyle(
+                                                      fontFamily: 'Montserrat',
+                                                      fontWeight: FontWeight.w700,
+                                                      fontSize: 20,
+                                                      color: Color(0xffFF9C1A))))
+                                        ],
+                                      ),
+                                      // height: 160,
+                                      // width: MediaQuery.of(context).size.width / 3,
+                                      // color: Colors.primaries[index],
+                                    ),
+                                  );
+                                })),
+                          ),
+                          Spacer(),
+                        ],
+                      )
+                      // child: ListView.builder(
+                      //     itemCount: 5,
+                      //     itemBuilder: ((context, index) {
+                      //       return Container(
+                      //         height: 160,
+                      //         width: 160,
+                      //         color: Colors.primaries[index],
+                      //       );
+                      //     })),
+                      ));
+            },
           ),
         ),
       ),
@@ -93,7 +200,7 @@ class _GKMHome2023State extends State<GKMHome2023> {
                     data_store.remove('token');
                     data_store.remove('isAdmin');
                     data_store.remove('acara');
-                    Get.offAllNamed("/gkm");
+                    Get.offAllNamed("/gkm_2023");
                   },
                 ),
               ),
@@ -319,18 +426,18 @@ class _GKMHome2023State extends State<GKMHome2023> {
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.white),
                           borderRadius: BorderRadius.all(Radius.circular(10)),
-                          image: DecorationImage(image: AssetImage(e), fit: BoxFit.fill)),
+                          image: DecorationImage(image: AssetImage(e), fit: BoxFit.cover)),
                       // child: Image(
                       //   image: AssetImage(e.toString()),
                       //   fit: BoxFit.fill,
                       // ),
                       // color: Colors.blue,
-                      width: MediaQuery.of(context).size.width,
+                      // width: MediaQuery.of(context).size.width,
                     );
                   });
                 }).toList(),
                 options: CarouselOptions(
-                  aspectRatio: 3.5,
+                  aspectRatio: 4,
                   //enlargeCenterPage: true,
                   viewportFraction: 0.3,
                   scrollDirection: Axis.horizontal,

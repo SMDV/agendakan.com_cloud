@@ -1,11 +1,9 @@
-import 'package:agendakan_2/pages/login/login_page.dart';
-import 'package:agendakan_2/plugins/ApiPlugin.dart';
+import 'package:agendakan_2/pages/gkm_2023/Repository/gkm_2023_api.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../gkm/repository/gkm_api.dart';
 //import 'package:login_ui/login_screen.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -19,7 +17,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   var rememberValue = false;
-  GKM_API _provider = GKM_API();
+  GKM_2023_API _provider = GKM_2023_API();
   final data_store = GetStorage();
   TextEditingController email = TextEditingController();
   TextEditingController name = TextEditingController();
@@ -51,9 +49,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 children: [
                   TextFormField(
                     controller: email,
-                    validator: (value) => EmailValidator.validate(value!)
-                        ? null
-                        : "Please enter a valid email",
+                    validator: (value) =>
+                        EmailValidator.validate(value!) ? null : "Please enter a valid email",
                     maxLines: 1,
                     decoration: InputDecoration(
                       hintText: 'Enter your email',
@@ -110,22 +107,25 @@ class _RegisterPageState extends State<RegisterPage> {
                   ElevatedButton(
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        var data = await _provider.post2(
-                            email.text, name.text, pass.text);
-                        // final prefs = await SharedPreferences.getInstance();
-                        // await prefs.setString('token', data.token);
-                        //setState(() {});
-
+                        var data =
+                            await _provider.register(email.text, name.text, pass.text, name.text);
                         if (data != null) {
-                          var data =
-                              await _provider.post(email.text, pass.text);
-                          print(data['message']);
-                          if (data != null) {
-                            data_store.write("token", data['token']);
-                            Get.toNamed('/gkm', arguments: data['token']);
-                          }
+                          Get.snackbar(
+                            'Notification',
+                            "Registration Successfull",
+                            colorText: Colors.white,
+                            backgroundColor: Colors.green,
+                            icon: const Icon(Icons.add_alert),
+                          );
+                          var data = await _provider.login(email.text, pass.text);
                         } else {
-                          print("Register Failed!");
+                          Get.snackbar(
+                            'Notification',
+                            "Registration Failed",
+                            colorText: Colors.white,
+                            backgroundColor: Colors.red,
+                            icon: const Icon(Icons.add_alert),
+                          );
                         }
                       }
                     },

@@ -75,7 +75,7 @@ class MyApp extends StatelessWidget {
       title: "Agendakan.com",
       scrollBehavior: MyCustomScrollBehavior(),
       debugShowCheckedModeBanner: false,
-      unknownRoute: GetPage(name: '/home', page: () => HomeLayout()),
+      unknownRoute: GetPage(name: '/home', page: () => GKMHome2023()),
       initialRoute: '/home',
       getPages: [
         GetPage(

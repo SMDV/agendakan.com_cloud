@@ -1,13 +1,10 @@
+import 'package:agendakan_2/pages/gkm_2023/Repository/gkm_2023_api.dart';
 import 'package:agendakan_2/pages/register/register_page.dart';
-import 'package:agendakan_2/plugins/ApiPlugin.dart';
-import 'package:agendakan_2/test.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../gkm/repository/gkm_api.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, required this.title}) : super(key: key);
@@ -19,7 +16,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  GKM_API _provider = GKM_API();
+  GKM_2023_API _provider = GKM_2023_API();
   var rememberValue = false;
   final data_store = GetStorage();
   TextEditingController email = TextEditingController();
@@ -53,9 +50,8 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   TextFormField(
                     controller: email,
-                    validator: (value) => EmailValidator.validate(value!)
-                        ? null
-                        : "Please enter a valid email",
+                    validator: (value) =>
+                        EmailValidator.validate(value!) ? null : "Please enter a valid email",
                     maxLines: 1,
                     decoration: InputDecoration(
                       hintText: 'Enter your email',
@@ -92,18 +88,23 @@ class _LoginPageState extends State<LoginPage> {
                   ElevatedButton(
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        var data = await _provider.post(email.text, pass.text);
+                        var data = await _provider.login(email.text, pass.text);
                         if (data != null) {
-                          data_store.write("token", data['token']);
-                          data_store.write("isAdmin", data['isAdmin']);
-                          if (data['isAdmin'] == 1) {
-                            Get.toNamed('/gkm/ticket_list',
-                                arguments: data['token']);
-                          } else {
-                            Get.toNamed('/gkm', arguments: data['token']);
-                          }
+                          Get.snackbar(
+                            'Notification',
+                            "Login Successfull",
+                            colorText: Colors.white,
+                            backgroundColor: Colors.green,
+                            icon: const Icon(Icons.add_alert),
+                          );
                         } else {
-                          print("Login Failed!");
+                          Get.snackbar(
+                            'Notification',
+                            "Login Failed",
+                            colorText: Colors.white,
+                            backgroundColor: Colors.red,
+                            icon: const Icon(Icons.add_alert),
+                          );
                         }
                         setState(() {});
                         //print(data['token']);
@@ -131,8 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  const RegisterPage(title: 'Register UI'),
+                              builder: (context) => const RegisterPage(title: 'Register UI'),
                             ),
                           );
                         },
