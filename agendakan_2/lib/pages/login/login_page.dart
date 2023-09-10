@@ -97,6 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                             backgroundColor: Colors.green,
                             icon: const Icon(Icons.add_alert),
                           );
+                          Get.toNamed('/gkm_2023', arguments: data['token']);
                         } else {
                           Get.snackbar(
                             'Notification',

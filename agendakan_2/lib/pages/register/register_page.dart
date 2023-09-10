@@ -110,6 +110,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         var data =
                             await _provider.register(email.text, name.text, pass.text, name.text);
                         if (data != null) {
+                          var data = await _provider.login(email.text, pass.text);
                           Get.snackbar(
                             'Notification',
                             "Registration Successfull",
@@ -117,7 +118,9 @@ class _RegisterPageState extends State<RegisterPage> {
                             backgroundColor: Colors.green,
                             icon: const Icon(Icons.add_alert),
                           );
-                          var data = await _provider.login(email.text, pass.text);
+                          if (data != null) {
+                            Get.toNamed('/gkm_2023', arguments: data['token']);
+                          }
                         } else {
                           Get.snackbar(
                             'Notification',

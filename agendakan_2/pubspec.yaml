@@ -88,9 +88,9 @@ flutter:
         - asset: fonts/savate-italique.otf
     - family: Montserrat
       fonts:
-        - asset: fonts/Montserrat-Bold.otf
+        - asset: fonts/Montserrat-Bold.ttf
           weight: 700
-        - asset: fonts/Montserrat-ExtraBold.otf
+        - asset: fonts/Montserrat-ExtraBold.ttf
           weight: 800
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

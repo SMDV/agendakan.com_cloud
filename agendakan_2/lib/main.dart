@@ -9,6 +9,7 @@ import 'package:agendakan_2/pages/fipfest/controller/login_page.dart';
 import 'package:agendakan_2/pages/gkm/gkm_buy_form.dart';
 import 'package:agendakan_2/pages/gkm/gkm_home.dart';
 import 'package:agendakan_2/pages/gkm_2023/gkm_2023_home.dart';
+import 'package:agendakan_2/pages/gkm_2023/gkm_2023_list_tiket.dart';
 import 'package:agendakan_2/pages/layout.dart';
 import 'package:agendakan_2/pages/login/login_page.dart';
 import 'package:agendakan_2/pages/mercusuara/layout/MercusuaraHome.dart';
@@ -49,6 +50,7 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'pages/gkm/gkm_list_ticket.dart';
+import 'pages/gkm_2023/gkm_2023_buy_form.dart';
 
 void main() async {
   setUrlStrategy(PathUrlStrategy());
@@ -78,10 +80,7 @@ class MyApp extends StatelessWidget {
       unknownRoute: GetPage(name: '/home', page: () => GKMHome2023()),
       initialRoute: '/home',
       getPages: [
-        GetPage(
-            name: '/SignatureeFestival',
-            page: () => Home(),
-            transition: Transition.fadeIn),
+        GetPage(name: '/SignatureeFestival', page: () => Home(), transition: Transition.fadeIn),
         GetPage(
             name: '/SignatureeFestival/gueststar',
             page: () => GuestStarPage(),
@@ -94,35 +93,23 @@ class MyApp extends StatelessWidget {
             name: '/SignatureeFestival/contactus',
             page: () => ContactPage(),
             transition: Transition.fadeIn),
-        GetPage(
-            name: '/mercusuara',
-            page: () => MercusuaraHome(),
-            transition: Transition.fadeIn),
+        GetPage(name: '/mercusuara', page: () => MercusuaraHome(), transition: Transition.fadeIn),
         GetPage(name: '/loginpage', page: () => LoginPage(title: '')),
-        GetPage(
-            name: '/mercusuara/loginpage',
-            page: () => LoginPageMercusuara(title: '')),
+        GetPage(name: '/mercusuara/loginpage', page: () => LoginPageMercusuara(title: '')),
         GetPage(name: '/register', page: () => RegisterPage(title: '')),
-        GetPage(
-            name: '/mercusuara/register',
-            page: () => RegisterPageMercusuara(title: '')),
+        GetPage(name: '/mercusuara/register', page: () => RegisterPageMercusuara(title: '')),
         GetPage(name: '/ticketlist', page: () => TicketMenu()),
-        GetPage(
-            name: '/mercusuara/ticketlist', page: () => TicketMenuMercusuara()),
-        GetPage(
-            name: '/mercusuara/ticketlistAdmin',
-            page: () => TicketAdminMercusuara()),
+        GetPage(name: '/mercusuara/ticketlist', page: () => TicketMenuMercusuara()),
+        GetPage(name: '/mercusuara/ticketlistAdmin', page: () => TicketAdminMercusuara()),
         GetPage(
             name: '/mercusuara/ticket/details',
             page: () => ticketDetailsMercusuaraPage(
                   title: "",
                 )),
         GetPage(
-            name: '/mercusuara/ticket/detailsAdmin',
-            page: () => TicketDetailsAdminMercusuara()),
+            name: '/mercusuara/ticket/detailsAdmin', page: () => TicketDetailsAdminMercusuara()),
         GetPage(name: '/ticketlistAdmin', page: () => TicketAdmin()),
-        GetPage(
-            name: '/ticketlistAdmin/testing', page: () => TicketAdminTest()),
+        GetPage(name: '/ticketlistAdmin/testing', page: () => TicketAdminTest()),
         GetPage(name: '/soasesignature', page: () => DetailEvent()),
         GetPage(
             name: '/soasesignature/detailevents',
@@ -132,17 +119,13 @@ class MyApp extends StatelessWidget {
             name: '/soasesignature/tickets',
             page: () => EventTickets(),
             transition: Transition.fadeIn),
-        GetPage(
-            name: '/soasesignature/gs',
-            page: () => EventGs(),
-            transition: Transition.fadeIn),
+        GetPage(name: '/soasesignature/gs', page: () => EventGs(), transition: Transition.fadeIn),
         GetPage(
             name: '/tickets/details',
             page: () => ticketDetailsPage(
                   title: "",
                 )),
-        GetPage(
-            name: '/tickets/detailsAdmin', page: () => TicketDetailsAdmin()),
+        GetPage(name: '/tickets/detailsAdmin', page: () => TicketDetailsAdmin()),
         GetPage(
             name: '/ticketform',
             page: () => BuyTicketPage(
@@ -156,30 +139,14 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/signature/OTS/bukutamu', page: () => ListBukuTamu()),
         GetPage(name: '/signature/OTS/photobooth', page: () => PhotoBooth()),
         GetPage(name: '/signature/OTS/bucket', page: () => Bucket()),
+        GetPage(name: '/home', page: () => HomeLayout(), transition: Transition.fadeIn),
+        GetPage(name: '/details', page: () => DetailsLayout(), transition: Transition.fadeIn),
+        GetPage(name: '/gkm', page: () => GKM_Home(), transition: Transition.fadeIn),
         GetPage(
-            name: '/home',
-            page: () => HomeLayout(),
-            transition: Transition.fadeIn),
+            name: '/gkm/ticket_form', page: () => GKM_FORM_TICKET(), transition: Transition.fadeIn),
         GetPage(
-            name: '/details',
-            page: () => DetailsLayout(),
-            transition: Transition.fadeIn),
-        GetPage(
-            name: '/gkm',
-            page: () => GKM_Home(),
-            transition: Transition.fadeIn),
-        GetPage(
-            name: '/gkm/ticket_form',
-            page: () => GKM_FORM_TICKET(),
-            transition: Transition.fadeIn),
-        GetPage(
-            name: '/gkm/ticket_list',
-            page: () => ListTicketGKM(),
-            transition: Transition.fadeIn),
-        GetPage(
-            name: '/fipfest',
-            page: () => FipFestHome(),
-            transition: Transition.fadeIn),
+            name: '/gkm/ticket_list', page: () => ListTicketGKM(), transition: Transition.fadeIn),
+        GetPage(name: '/fipfest', page: () => FipFestHome(), transition: Transition.fadeIn),
         GetPage(
             name: '/fipfest/ticket_form',
             page: () => Fipfest_FORM_TICKET(),
@@ -196,10 +163,7 @@ class MyApp extends StatelessWidget {
             name: '/fipfest/registerpage',
             page: () => FipfestRegisterPage(title: ''),
             transition: Transition.fadeIn),
-        GetPage(
-            name: '/weekfest',
-            page: () => WeekFestHome(),
-            transition: Transition.fadeIn),
+        GetPage(name: '/weekfest', page: () => WeekFestHome(), transition: Transition.fadeIn),
         GetPage(
             name: '/weekfest/ticket_form',
             page: () => Weekfest_FORM_TICKET(),
@@ -216,9 +180,14 @@ class MyApp extends StatelessWidget {
             name: '/weekfest/registerpage',
             page: () => FipfestRegisterPage(title: ''),
             transition: Transition.fadeIn),
+        GetPage(name: '/gkm_2023', page: () => GKMHome2023(), transition: Transition.fadeIn),
         GetPage(
-            name: '/gkm_2023',
-            page: () => GKMHome2023(),
+            name: '/gkm_2023/ticket_form',
+            page: () => GKM_2023_FORM(),
+            transition: Transition.fadeIn),
+        GetPage(
+            name: '/gkm_2023/ticket_list',
+            page: () => ListTicketGKM2023(),
             transition: Transition.fadeIn),
       ],
     );

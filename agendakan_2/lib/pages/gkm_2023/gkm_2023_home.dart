@@ -82,11 +82,13 @@ class _GKMHome2023State extends State<GKMHome2023> {
                                             content: const Text(
                                                 'Ticket sudah habis, atau penjualan sudah ditutup'));
                                       } else {
-                                        final data_store = GetStorage();
-                                        if (data_store.read('token') == null) {
-                                        }else{
-
-                                        }
+                                        // final data_store = GetStorage();
+                                        // if (data_store.read('token') == null) {
+                                        //   Get.toNamed('/loginpage');
+                                        // }else{
+                                        data_store.write("jenis_tiket", 'presale${index + 1}');
+                                        Get.toNamed("/gkm_2023/ticket_form");
+                                        // }
                                       }
                                     },
                                     child: Container(
@@ -181,9 +183,9 @@ class _GKMHome2023State extends State<GKMHome2023> {
                   )),
                   onTap: () {
                     if (data_store.read("isAdmin") == 1) {
-                      Get.offAndToNamed('/gkm/ticket_list');
+                      Get.offAndToNamed('/gkm_2023/ticket_list');
                     } else {
-                      Get.offAndToNamed('/gkm/ticket_list');
+                      Get.offAndToNamed('/gkm_2023/ticket_list');
                     }
                   },
                 ),
@@ -311,9 +313,9 @@ class _GKMHome2023State extends State<GKMHome2023> {
                       ),
                       onTap: () {
                         if (data_store.read("isAdmin") == 1) {
-                          Get.offAndToNamed('/gkm/ticket_list');
+                          Get.offAndToNamed('/gkm_2023/ticket_list');
                         } else {
-                          Get.toNamed('/gkm/ticket_list');
+                          Get.toNamed('/gkm_2023/ticket_list');
                         }
                       },
                     ),
@@ -340,7 +342,7 @@ class _GKMHome2023State extends State<GKMHome2023> {
                         data_store.remove('token');
                         data_store.remove('isAdmin');
                         data_store.remove('acara');
-                        Get.offAllNamed("/gkm");
+                        Get.offAllNamed("/gkm_2023");
                       },
                     ),
                     SizedBox(
@@ -491,7 +493,7 @@ class _GKMHome2023State extends State<GKMHome2023> {
                                         decoration: BoxDecoration(
                                             color: Colors.white,
                                             image: DecorationImage(
-                                                image: AssetImage('images/gkm_gs_yura.png'),
+                                                image: AssetImage('images/fipfest_gs_comingsoon.png'),
                                                 fit: BoxFit.fill),
                                             borderRadius: BorderRadius.all(Radius.circular(20))),
                                       ),
@@ -515,7 +517,7 @@ class _GKMHome2023State extends State<GKMHome2023> {
                                         decoration: BoxDecoration(
                                             // color: Colors.white,
                                             image: DecorationImage(
-                                                image: AssetImage('images/gkm_gs_feast.png'),
+                                                image: AssetImage('images/fipfest_gs_comingsoon.png'),
                                                 fit: BoxFit.fill),
                                             borderRadius: BorderRadius.all(Radius.circular(20))),
                                       ),
@@ -540,7 +542,7 @@ class _GKMHome2023State extends State<GKMHome2023> {
                                         decoration: BoxDecoration(
                                             // color: Color(0xffF1F1F1),
                                             image: DecorationImage(
-                                                image: AssetImage('images/gkm_gs_hindia.png'),
+                                                image: AssetImage('images/fipfest_gs_comingsoon.png'),
                                                 fit: BoxFit.scaleDown),
                                             borderRadius: BorderRadius.all(Radius.circular(20))),
                                       ),
@@ -574,257 +576,9 @@ class _GKMHome2023State extends State<GKMHome2023> {
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage("images/gkm_2023_desc_bg.png"), fit: BoxFit.fill)),
-              // child: Row(children: [
-              //   Container(
-              //     padding: EdgeInsets.all(MediaQuery.of(context).size.width / 20),
-              //     child: Image(image: AssetImage("images/gkm_desc_left.png")),
-              //     color: Color(0xffFF9C1A),
-              //     height: MediaQuery.of(context).size.height,
-              //     width: MediaQuery.of(context).size.width / 2,
-              //   ),
-              //   Container(
-              //     child: Image(image: AssetImage("images/gkm_date_location_right.png")),
-              //     color: Color(0xffFFF9E0),
-              //     height: MediaQuery.of(context).size.height,
-              //     width: MediaQuery.of(context).size.width / 2,
-              //   ),
-              // ]),
             ),
           ),
-          //Book now
-          // AspectRatio(
-          //   aspectRatio: 16 / 8,
-          //   child: Container(
-          //     child: Column(children: [
-          //       Spacer(),
-          //       Container(
-          //         width: MediaQuery.of(context).size.width / 2,
-          //         child: Image(
-          //           image: AssetImage("images/gkm_booknow_logo.png"),
-          //         ),
-          //       ),
-          //       Spacer(),
-          //       Container(
-          //         padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width / 16, 0,
-          //             MediaQuery.of(context).size.width / 16, 0),
-          //         child: Row(
-          //           children: [
-          //             Spacer(),
-          //             InkWell(
-          //               onTap: () async {
-          //                 // Get.defaultDialog(
-          //                 //     title: "*MAINTENANCE*",
-          //                 //     content: Center(
-          //                 //       child: Text(
-          //                 //           "Please Wait! \nThis function is still in maintenance!"),
-          //                 //     ));
-
-          //                 //API nanti disini
-          //                 // final _provider = GKM_API();
-          //                 // dynamic data = await _provider.get7();
-          //                 // print(data['presale1']);
-          //                 // if (data['presale1'] != "tutup") {
-          //                 //   final data_store = GetStorage();
-          //                 //   if (data_store.read("token") != null) {
-          //                 //     data_store.write("jenis_tiket", "presale1");
-          //                 //     Get.toNamed("/gkm/ticket_form");
-          //                 //   } else {
-          //                 //     Get.toNamed("/loginpage");
-          //                 //   }
-          //                 // } else {
-          //                 //   Get.defaultDialog(content: Text("Ticket sudah Sold Out!"));
-          //                 // }
-          //               },
-          //               child: Container(
-          //                   decoration: BoxDecoration(
-          //                       color: Color(0xffFFF9E0).withOpacity(0.5),
-          //                       border: Border.all(color: Colors.blue, width: 2),
-          //                       borderRadius: BorderRadius.all(Radius.circular(20))),
-          //                   width: MediaQuery.of(context).size.width / 4,
-          //                   height: MediaQuery.of(context).size.width / 8,
-          //                   child: Column(
-          //                     children: [
-          //                       Spacer(),
-          //                       Container(
-          //                         width: MediaQuery.of(context).size.width / 8,
-          //                         // height: MediaQuery.of(context).size.width / 8,
-          //                         child: Image(
-          //                           image: AssetImage("images/sold_out.png"),
-          //                           fit: BoxFit.fitHeight,
-          //                         ),
-          //                         decoration: BoxDecoration(
-          //                             // color: Colors.black.withOpacity(0.85),
-          //                             image:
-          //                                 DecorationImage(image: AssetImage("images/gkm_p1.png"))),
-          //                       ),
-          //                       Spacer(),
-          //                     ],
-          //                   )),
-          //             ),
-          //             Spacer(),
-          //             InkWell(
-          //               onTap: () async {
-          //                 // Get.defaultDialog(
-          //                 //     title: "*MAINTENANCE*",
-          //                 //     content: Center(
-          //                 //       child: Text(
-          //                 //           "Please Wait! \nThis function is still in maintenance!"),
-          //                 //     ));
-
-          //                 //API nanti disini
-          //                 // final _provider = GKM_API();
-          //                 // dynamic data = await _provider.get7();
-          //                 // print(data['presale1']);
-          //                 // if (data['presale1'] != "tutup") {
-          //                 //   final data_store = GetStorage();
-          //                 //   if (data_store.read("token") != null) {
-          //                 //     data_store.write("jenis_tiket", "presale1");
-          //                 //     Get.toNamed("/gkm/ticket_form");
-          //                 //   } else {
-          //                 //     Get.toNamed("/loginpage");
-          //                 //   }
-          //                 // } else {
-          //                 //   Get.defaultDialog(content: Text("Ticket sudah Sold Out!"));
-          //                 // }
-          //               },
-          //               child: Container(
-          //                   decoration: BoxDecoration(
-          //                       color: Color(0xffFFF9E0).withOpacity(0.5),
-          //                       border: Border.all(color: Colors.blue, width: 2),
-          //                       borderRadius: BorderRadius.all(Radius.circular(20))),
-          //                   width: MediaQuery.of(context).size.width / 4,
-          //                   height: MediaQuery.of(context).size.width / 8,
-          //                   child: Column(
-          //                     children: [
-          //                       Spacer(),
-          //                       Container(
-          //                         width: MediaQuery.of(context).size.width / 8,
-          //                         // height: MediaQuery.of(context).size.width / 8,
-          //                         child: Image(
-          //                           image: AssetImage("images/sold_out.png"),
-          //                           fit: BoxFit.fitHeight,
-          //                         ),
-          //                         decoration: BoxDecoration(
-          //                             // color: Colors.black.withOpacity(0.85),
-          //                             image:
-          //                                 DecorationImage(image: AssetImage("images/gkm_p3.png"))),
-          //                       ),
-          //                       Spacer(),
-          //                     ],
-          //                   )),
-          //             ),
-          //             Spacer(),
-          //             InkWell(
-          //               onTap: () async {
-          //                 // Get.defaultDialog(
-          //                 //     title: "*MAINTENANCE*",
-          //                 //     content: Center(
-          //                 //       child: Text(
-          //                 //           "Please Wait! \nThis function is still in maintenance!"),
-          //                 //     ));
-          //                 //API nanti disini
-          //                 // final _provider = GKM_API();
-          //                 // dynamic data = await _provider.get7();
-          //                 // print(data['presale2']);
-          //                 // if (data['presale2'] != "tutup") {
-          //                 //   final data_store = GetStorage();
-          //                 //   if (data_store.read("token") != null) {
-          //                 //     data_store.write("jenis_tiket", "presale2");
-          //                 //     Get.toNamed("/gkm/ticket_form");
-          //                 //   } else {
-          //                 //     Get.toNamed("/loginpage");
-          //                 //   }
-          //                 // } else {
-          //                 //   Get.defaultDialog(content: Text("Ticket sudah Sold Out!"));
-          //                 // }
-          //               },
-          //               child: Container(
-          //                   decoration: BoxDecoration(
-          //                       color: Color(0xffFFF9E0).withOpacity(0.5),
-          //                       border: Border.all(color: Colors.blue, width: 2),
-          //                       borderRadius: BorderRadius.all(Radius.circular(20))),
-          //                   width: MediaQuery.of(context).size.width / 4,
-          //                   height: MediaQuery.of(context).size.width / 8,
-          //                   child: Column(
-          //                     children: [
-          //                       Spacer(),
-          //                       Container(
-          //                         width: MediaQuery.of(context).size.width / 8,
-          //                         // height: MediaQuery.of(context).size.width / 8,
-          //                         child: Image(
-          //                           image: AssetImage("images/sold_out.png"),
-          //                           fit: BoxFit.fitHeight,
-          //                         ),
-          //                         decoration: BoxDecoration(
-          //                             // color: Colors.black.withOpacity(0.85),
-          //                             image:
-          //                                 DecorationImage(image: AssetImage("images/gkm_p4.png"))),
-          //                       ),
-          //                       Spacer(),
-          //                     ],
-          //                   )),
-          //             ),
-          //             Spacer(),
-          //           ],
-          //         ),
-          //       ),
-          //       Spacer(),
-          //       InkWell(
-          //         onTap: () async {
-          //           // Get.defaultDialog(
-          //           //     title: "*MAINTENANCE*",
-          //           //     content: Center(
-          //           //       child: Text(
-          //           //           "Please Wait! \nThis function is still in maintenance!"),
-          //           //     ));
-          //           //API nanti disini
-          //           // final _provider = GKM_API();
-          //           // dynamic data = await _provider.get7();
-          //           // print(data['presale3']);
-          //           // if (data['presale3'] != "tutup") {
-          //           //   final data_store = GetStorage();
-          //           //   if (data_store.read("token") != null) {
-          //           //     data_store.write("jenis_tiket", "presale3");
-          //           //     Get.toNamed("/gkm/ticket_form");
-          //           //   } else {
-          //           //     Get.toNamed("/loginpage");
-          //           //   }
-          //           // } else {
-          //           //   Get.defaultDialog(content: Text("Ticket sudah Sold Out!"));
-          //           // }
-          //         },
-          //         child: Container(
-          //             decoration: BoxDecoration(
-          //                 color: Color(0xffFFF9E0).withOpacity(0.5),
-          //                 border: Border.all(color: Colors.blue, width: 2),
-          //                 borderRadius: BorderRadius.all(Radius.circular(20))),
-          //             width: MediaQuery.of(context).size.width / 4,
-          //             height: MediaQuery.of(context).size.width / 8,
-          //             child: Column(
-          //               children: [
-          //                 Spacer(),
-          //                 Container(
-          //                   width: MediaQuery.of(context).size.width / 8,
-          //                   // height: MediaQuery.of(context).size.width / 8,
-          //                   child: Image(
-          //                     image: AssetImage("images/gkm_p5.png"),
-          //                     fit: BoxFit.fitHeight,
-          //                   ),
-          //                   decoration: BoxDecoration(
-          //                       // color: Colors.black.withOpacity(0.85),
-          //                       image: DecorationImage(image: AssetImage("images/gkm_p5.png"))),
-          //                 ),
-          //                 Spacer(),
-          //               ],
-          //             )),
-          //       ),
-          //       Spacer(),
-          //     ]),
-          //     color: Color(0xffFFBD66),
-          //     height: MediaQuery.of(context).size.height,
-          //     width: MediaQuery.of(context).size.width,
-          //   ),
-          // ),
+          
 
           //Footer
           if (MediaQuery.of(context).size.width <= 1100)

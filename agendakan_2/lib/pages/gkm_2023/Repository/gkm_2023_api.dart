@@ -57,11 +57,11 @@ class GKM_2023_API {
         data_store.write("token", responseJson['token']);
         data_store.write("isAdmin", responseJson['isAdmin']);
         data_store.write("nama_user", responseJson['nama_user']);
-        if (responseJson['isAdmin'] == 1) {
-          // Get.toNamed('/gkm/ticket_list', arguments: responseJson['token']);
-        } else {
-          Get.toNamed('/gkm_2023', arguments: responseJson['token']);
-        }
+        // if (responseJson['isAdmin'] == 1) {
+        //   // Get.toNamed('/gkm/ticket_list', arguments: responseJson['token']);
+        // } else {
+        //   Get.toNamed('/gkm_2023', arguments: responseJson['token']);
+        // }
       }
     } else {
       print("Login Failed!");
@@ -93,6 +93,81 @@ class GKM_2023_API {
     }
     Get.back();
 
+    return responseJson;
+  }
+
+  Future<dynamic> cekID(String nomorKtp) async {
+    var responseJson;
+    Get.defaultDialog(title: "Mohon Menunggu", content: CircularProgressIndicator());
+    try {
+      var url_uri = Uri.parse(_baseUrl + "cek-jumlah-pembelian");
+      var token = data_store.read("token");
+      final response = await http.post(
+        url_uri,
+        headers: <String, String>{
+          "Content-Type": "application/json; charset=UTF-8",
+          "Authorization": "Bearer " + token,
+        },
+        body: jsonEncode(<String, String>{
+          "nomor_ktp": nomorKtp,
+        }),
+      );
+      //final response = await http.get(url_uri);
+      responseJson = _response(response);
+    } on SocketException {
+      throw Exception();
+    }
+    Get.back();
+    return responseJson;
+  }
+
+  Future<dynamic> submitPembelian(String token, var dataSend) async {
+    var responseJson;
+    //const test = data_send;
+    Get.defaultDialog(content: CircularProgressIndicator());
+    String jsonString = jsonEncode(dataSend);
+    print(jsonString);
+    try {
+      var url_uri = Uri.parse(_baseUrl + "pembelian");
+
+      final response = await http.post(
+        url_uri,
+        headers: <String, String>{
+          "Content-Type": "application/json; charset=UTF-8",
+          "Authorization": "Bearer " + token,
+        },
+        body: jsonString,
+      );
+      //final response = await http.get(url_uri);
+      responseJson = _response(response);
+    } on SocketException {
+      throw Exception();
+    }
+    Get.back();
+    return responseJson;
+  }
+
+    Future<dynamic> getListTicket(String token, String keyword) async {
+    var responseJson;
+    const test = "";
+    String jsonString = jsonEncode(test);
+    print(jsonString);
+    try {
+      var url_uri =
+          Uri.parse(_baseUrl + keyword + "-pembelian"); // ->
+
+      final response = await http.get(
+        url_uri,
+        headers: <String, String>{
+          "Content-Type": "application/json; charset=UTF-8",
+          "Authorization": "Bearer " + token,
+        },
+      );
+      //final response = await http.get(url_uri);
+      responseJson = _response(response);
+    } on SocketException {
+      throw Exception();
+    }
     return responseJson;
   }
 
