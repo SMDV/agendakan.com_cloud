@@ -54,58 +54,50 @@ class _ListTicketGKM2023State extends State<ListTicketGKM2023> {
               ),
               if (data_store.read("token") != null) ...[
                 Container(
-                  decoration:
-                      BoxDecoration(border: Border(bottom: BorderSide())),
+                  decoration: BoxDecoration(border: Border(bottom: BorderSide())),
                   child: ListTile(
                     title: Center(
                         child: Text(
                       "HOME",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontFamily: 'Syne',
-                          fontWeight: FontWeight.w800),
+                      style:
+                          TextStyle(fontSize: 20, fontFamily: 'Syne', fontWeight: FontWeight.w800),
                     )),
                     onTap: () {
                       if (data_store.read("isAdmin") == 1) {
-                        Get.offAndToNamed('/gkm_2023');
+                        Get.offAndToNamed('/gkm');
                       } else {
-                        Get.offAndToNamed('/gkm_2023');
+                        Get.offAndToNamed('/gkm');
                       }
                     },
                   ),
                 ),
                 Container(
-                  decoration:
-                      BoxDecoration(border: Border(bottom: BorderSide())),
+                  decoration: BoxDecoration(border: Border(bottom: BorderSide())),
                   child: ListTile(
                     title: Center(
                         child: Text(
                       "LOG OUT",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontFamily: 'Syne',
-                          fontWeight: FontWeight.w800),
+                      style:
+                          TextStyle(fontSize: 20, fontFamily: 'Syne', fontWeight: FontWeight.w800),
                     )),
                     onTap: () {
                       data_store.remove('token');
                       data_store.remove('isAdmin');
                       data_store.remove('acara');
-                      Get.offAllNamed("gkm_2023");
+                      Get.offAllNamed("/gkm");
                     },
                   ),
                 ),
               ] else ...[
                 Container(
-                  decoration: BoxDecoration(
-                      border: Border(top: BorderSide(), bottom: BorderSide())),
+                  decoration:
+                      BoxDecoration(border: Border(top: BorderSide(), bottom: BorderSide())),
                   child: ListTile(
                     title: Center(
                         child: Text(
                       "LOG IN",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontFamily: 'Syne',
-                          fontWeight: FontWeight.w800),
+                      style:
+                          TextStyle(fontSize: 20, fontFamily: 'Syne', fontWeight: FontWeight.w800),
                     )),
                     onTap: () {
                       Get.offAllNamed("/loginpage");
@@ -149,33 +141,95 @@ class _ListTicketGKM2023State extends State<ListTicketGKM2023> {
                     ),
                     Spacer(),
                     if (data_store.read("isAdmin") == 1) ...[
-                      // Column(
-                      //   mainAxisAlignment: MainAxisAlignment.center,
-                      //   crossAxisAlignment: CrossAxisAlignment.center,
-                      //   children: [
-                      //     Text("Presale 2 Ticket status (Admin only)"),
-                      //     Row(
-                      //       children: [
-                      //         Text("Sisa"),
-                      //         Text(" - "),
-                      //         Text("Terjual")
-                      //       ],
-                      //     ),
-                      //     Row(
-                      //       children: [
-                      //         Text(
-                      //           _dataControll._sisa,
-                      //           style: TextStyle(color: Colors.red),
-                      //         ),
-                      //         Text("/"),
-                      //         Text(
-                      //           _dataControll._sold,
-                      //           style: TextStyle(color: Colors.green),
-                      //         )
-                      //       ],
-                      //     )
-                      //   ],
-                      // )
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Text("Ticket status (Admin only)"),
+                          Container(
+                            width: MediaQuery.of(context).size.width / 1.5,
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: [
+                                  Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text("Presale 1"),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            'Tersisa ${_dataControll._sisa1}',
+                                            style: TextStyle(color: Colors.red),
+                                          ),
+                                          Text("/"),
+                                          Text(
+                                            'Terjual ${_dataControll._sold1}',
+                                            style: TextStyle(color: Colors.green),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text("Presale 2"),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            'Tersisa ${_dataControll._sisa2}',
+                                            style: TextStyle(color: Colors.red),
+                                          ),
+                                          Text("/"),
+                                          Text(
+                                            'Terjual ${_dataControll._sold2}',
+                                            style: TextStyle(color: Colors.green),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text("Presale 2"),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            'Tersisa ${_dataControll._sisa2}',
+                                            style: TextStyle(color: Colors.red),
+                                          ),
+                                          Text("/"),
+                                          Text(
+                                            'Terjual ${_dataControll._sold2}',
+                                            style: TextStyle(color: Colors.green),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      )
                     ],
                     Spacer(),
                     InkWell(
@@ -203,15 +257,15 @@ class _ListTicketGKM2023State extends State<ListTicketGKM2023> {
                           _isAscending = false;
                           print("Column index = " + columnIndex.toString());
                           // sort the product list in Ascending, order by Price
-                          _dataControll._data.sort((productA, productB) =>
-                              productB['tiket'][0]['nama_tiket'].compareTo(
-                                  productA['tiket'][0]['nama_tiket']));
+                          _dataControll._data.sort((productA, productB) => productB['tiket'][0]
+                                  ['nama_tiket']
+                              .compareTo(productA['tiket'][0]['nama_tiket']));
                         } else {
                           _isAscending = true;
                           // sort the product list in Descending, order by Price
-                          _dataControll._data.sort((productA, productB) =>
-                              productA['tiket'][0]['nama_tiket'].compareTo(
-                                  productB['tiket'][0]['nama_tiket']));
+                          _dataControll._data.sort((productA, productB) => productA['tiket'][0]
+                                  ['nama_tiket']
+                              .compareTo(productB['tiket'][0]['nama_tiket']));
                         }
                         _dataControll.reSync();
                         // setState(() {});
@@ -225,15 +279,15 @@ class _ListTicketGKM2023State extends State<ListTicketGKM2023> {
                           _isAscending = false;
                           print("Column index = " + columnIndex.toString());
                           // sort the product list in Ascending, order by Price
-                          _dataControll._data.sort((productA, productB) =>
-                              productB['tiket'][0]['jenis_tiket'].compareTo(
-                                  productA['tiket'][0]['jenis_tiket']));
+                          _dataControll._data.sort((productA, productB) => productB['tiket'][0]
+                                  ['jenis_tiket']
+                              .compareTo(productA['tiket'][0]['jenis_tiket']));
                         } else {
                           _isAscending = true;
                           // sort the product list in Descending, order by Price
-                          _dataControll._data.sort((productA, productB) =>
-                              productA['tiket'][0]['jenis_tiket'].compareTo(
-                                  productB['tiket'][0]['jenis_tiket']));
+                          _dataControll._data.sort((productA, productB) => productA['tiket'][0]
+                                  ['jenis_tiket']
+                              .compareTo(productB['tiket'][0]['jenis_tiket']));
                         }
                         _dataControll.reSync();
                         // setState(() {});
@@ -308,8 +362,10 @@ class GetDataController extends GetxController with StateMixin {
   List<dynamic> _data = [].obs;
   GKM_2023_API _provider = GKM_2023_API();
   final data_store = GetStorage();
-  String _sisa = "";
-  String _sold = "";
+  String _sisa1 = "";
+  String _sold1 = "";
+  String _sisa2 = "";
+  String _sold2 = "";
   void reSync() {
     change(null, status: RxStatus.loading());
     change(null, status: RxStatus.success());
@@ -330,8 +386,10 @@ class GetDataController extends GetxController with StateMixin {
       if (apiData == null || apiData["data"] == null) {
         change(null, status: RxStatus.empty());
       } else {
-        _sisa = apiData['presale2-sisa'].toString();
-        _sold = apiData['presale2-terjual'].toString();
+        _sisa1 = apiData['presale1-sisa'].toString();
+        _sold1 = apiData['presale1-terjual'].toString();
+        _sisa2 = apiData['presale2-sisa'].toString();
+        _sold2 = apiData['presale2-terjual'].toString();
         _data = apiData["data"];
         change(null, status: RxStatus.success());
       }
@@ -379,8 +437,7 @@ class MyData extends DataTableSource {
       ],
 
       DataCell(Text(_data[index]['jumlah_tiket'].toString())),
-      DataCell(Text("Rp. " +
-          double.parse(_data[index]['total_price']).toInt().toString())),
+      DataCell(Text("Rp. " + double.parse(_data[index]['total_price']).toInt().toString())),
       DataCell(Text(_data[index]['payment_status'].toString())),
       // DataCell(Text(_data[index]['tiket'][0]['tanggal_kehadiran'].toString())),
       if (_data[index]['jumlah_tiket'] != 0) ...[
@@ -397,6 +454,13 @@ class MyData extends DataTableSource {
                           Text("Data Ticket 1"),
                           SizedBox(
                             height: 25,
+                          ),
+                          Row(
+                            children: [
+                              Text("No Identitas "),
+                              Spacer(),
+                              Text(_data[index]["nomor_ktp"].toString()),
+                            ],
                           ),
                           Row(
                             children: [
@@ -428,6 +492,13 @@ class MyData extends DataTableSource {
                               height: 25,
                             ),
                             Row(
+                            children: [
+                              Text("No Identitas "),
+                              Spacer(),
+                              Text(_data[index]["nomor_ktp"].toString()),
+                            ],
+                          ),
+                            Row(
                               children: [
                                 Text("Name "),
                                 Spacer(),
@@ -458,6 +529,13 @@ class MyData extends DataTableSource {
                               height: 25,
                             ),
                             Row(
+                            children: [
+                              Text("No Identitas "),
+                              Spacer(),
+                              Text(_data[index]["nomor_ktp"].toString()),
+                            ],
+                          ),
+                            Row(
                               children: [
                                 Text("Name "),
                                 Spacer(),
@@ -487,9 +565,7 @@ class MyData extends DataTableSource {
                               Text("Total Price"),
                               Spacer(),
                               Text("Rp. " +
-                                  double.parse(_data[index]["total_price"])
-                                      .toInt()
-                                      .toString()),
+                                  double.parse(_data[index]["total_price"]).toInt().toString()),
                             ],
                           ),
                           Row(
@@ -515,8 +591,7 @@ class MyData extends DataTableSource {
         DataCell(ElevatedButton(
           onPressed: () async {
             await launch(
-                'https://app.midtrans.com/snap/v3/vtweb/' +
-                    _data[index]['snap_token'],
+                'https://app.midtrans.com/snap/v3/redirection/' + _data[index]['snap_token'],
                 forceWebView: true);
           },
           child: Icon(
@@ -532,28 +607,25 @@ class MyData extends DataTableSource {
       else if (_data[index]['payment_status'] == "success") ...[
         DataCell(ElevatedButton(
           onPressed: () async {
-            GKM_API _provider = GKM_API();
+            GKM_2023_API _provider = GKM_2023_API();
             final data_store = GetStorage();
-            Get.defaultDialog(
-                title: "Mohon Ditunggu", content: CircularProgressIndicator());
-            var hasil = await _provider.get6(
+            Get.defaultDialog(title: "Mohon Ditunggu", content: CircularProgressIndicator());
+            var hasil = await _provider.downloadTicket(
                 data_store.read("token"), _data[index]['id'].toString());
             if (_data[index]['payment_status'] == "success") {
-              html.AnchorElement anchorElement = new html.AnchorElement(
-                  href: "https://gkm.agendakan.com/storage/pdf/E-Ticket(" +
+              html.AnchorElement anchorElement = html.AnchorElement(
+                  href: "https://gkm2023.agendakan.com/storage/pdf/E-Ticket(" +
                       _data[index]['kode_pembelian'] +
                       ").pdf");
-              anchorElement.download =
-                  "https://gkm.agendakan.com/storage/pdf/E-Ticket(" +
-                      _data[index]['kode_pembelian'] +
-                      ").pdf";
+              anchorElement.download = "https://gkm2023.agendakan.com/storage/pdf/E-Ticket(" +
+                  _data[index]['kode_pembelian'] +
+                  ").pdf";
               anchorElement.click();
             } else {
               Get.defaultDialog(
                   title: "Payment Incomplete!",
                   content: Container(
-                    child: Center(
-                        child: Text("Selesaikan Pembayaran Terlebih dahulu!")),
+                    child: Center(child: Text("Selesaikan Pembayaran Terlebih dahulu!")),
                     width: 200,
                   ));
             }

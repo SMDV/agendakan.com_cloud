@@ -158,7 +158,7 @@ class _GKM_2023_FORMState extends State<GKM_2023_FORM> {
                                     if (isProcessRegister) {
                                       var data = await _provider.register(
                                           emailAcc.text, nameAcc.text, passAcc.text, nameAcc.text);
-                                      if (data != null) {
+                                      if (data['success'] == true) {
                                         var data =
                                             await _provider.login(emailAcc.text, passAcc.text);
                                         Get.snackbar(
@@ -174,7 +174,7 @@ class _GKM_2023_FORMState extends State<GKM_2023_FORM> {
                                       } else {
                                         Get.snackbar(
                                           'Notification',
-                                          "Registration Failed",
+                                          "Registration Failed, ${data['message']}",
                                           colorText: Colors.white,
                                           backgroundColor: Colors.red,
                                           icon: const Icon(Icons.add_alert),
@@ -196,7 +196,7 @@ class _GKM_2023_FORMState extends State<GKM_2023_FORM> {
                                       } else {
                                         Get.snackbar(
                                           'Notification',
-                                          "Login Failed",
+                                          "Login Failed, ${data['message']}",
                                           colorText: Colors.white,
                                           backgroundColor: Colors.red,
                                           icon: const Icon(Icons.add_alert),
@@ -208,12 +208,19 @@ class _GKM_2023_FORMState extends State<GKM_2023_FORM> {
                                 style: ElevatedButton.styleFrom(
                                   padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
                                 ),
-                                child: const Text(
-                                  'Sign up',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                                child: (isProcessRegister)
+                                    ? const Text(
+                                        'Sign up',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      )
+                                    : const Text(
+                                        'Sign in',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                               ),
                               const SizedBox(
                                 height: 20,
@@ -697,6 +704,36 @@ class _GKM_2023_FORMState extends State<GKM_2023_FORM> {
                                                 'nomor_ktp': noKtp.text,
                                                 'data': data_send
                                               };
+                                              // Get.defaultDialog(
+                                              //   title: 'Detail Pembelian Ticket',
+                                              //   content: Container(
+                                              //     child: Column(
+                                              //       children: [
+                                              //         Text('No KTP : ${noKtp.text}')
+
+                                              //       ],
+                                              //     ),
+                                              //   ),
+                                              //   onConfirm: () async {
+                                              //     final _provider = GKM_2023_API();
+                                              //     var data = await _provider.submitPembelian(
+                                              //         token, form_data);
+                                              //     print(data);
+                                              //     if (data != null) {
+                                              //       if (data['status'] == 'success') {
+                                              //         Get.snackbar(
+                                              //           'Notification',
+                                              //           "Checkout Successfull",
+                                              //           colorText: Colors.white,
+                                              //           backgroundColor: Colors.green,
+                                              //           icon: const Icon(Icons.add_alert),
+                                              //         );
+                                              //         Get.toNamed("/gkm_2023/ticket_list");
+                                              //       }
+                                              //     }
+                                              //   },
+                                              // );
+
                                               final _provider = GKM_2023_API();
                                               var data =
                                                   await _provider.submitPembelian(token, form_data);
@@ -710,8 +747,16 @@ class _GKM_2023_FORMState extends State<GKM_2023_FORM> {
                                                     backgroundColor: Colors.green,
                                                     icon: const Icon(Icons.add_alert),
                                                   );
-                                                  Get.toNamed("/gkm_2023");
+                                                  Get.toNamed("/gkm/ticket_list");
                                                 }
+                                              } else {
+                                                Get.snackbar(
+                                                  'Notification',
+                                                  "Checkout Failed, ${data['message']}",
+                                                  colorText: Colors.white,
+                                                  backgroundColor: Colors.red,
+                                                  icon: const Icon(Icons.add_alert),
+                                                );
                                               }
                                             } else {
                                               print('Validasi Acara');

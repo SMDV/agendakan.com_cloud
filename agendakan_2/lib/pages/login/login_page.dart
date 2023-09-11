@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         var data = await _provider.login(email.text, pass.text);
-                        if (data != null) {
+                        if (data['success'] == true) {
                           Get.snackbar(
                             'Notification',
                             "Login Successfull",
@@ -97,11 +97,11 @@ class _LoginPageState extends State<LoginPage> {
                             backgroundColor: Colors.green,
                             icon: const Icon(Icons.add_alert),
                           );
-                          Get.toNamed('/gkm_2023', arguments: data['token']);
+                          Get.toNamed('/gkm', arguments: data['token']);
                         } else {
                           Get.snackbar(
                             'Notification',
-                            "Login Failed",
+                            "Login Failed, ${data['message']}",
                             colorText: Colors.white,
                             backgroundColor: Colors.red,
                             icon: const Icon(Icons.add_alert),

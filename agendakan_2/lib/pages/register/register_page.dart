@@ -109,7 +109,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       if (_formKey.currentState!.validate()) {
                         var data =
                             await _provider.register(email.text, name.text, pass.text, name.text);
-                        if (data != null) {
+                        if (data['success'] == true) {
                           var data = await _provider.login(email.text, pass.text);
                           Get.snackbar(
                             'Notification',
@@ -118,13 +118,13 @@ class _RegisterPageState extends State<RegisterPage> {
                             backgroundColor: Colors.green,
                             icon: const Icon(Icons.add_alert),
                           );
-                          if (data != null) {
-                            Get.toNamed('/gkm_2023', arguments: data['token']);
+                          if (data['success'] == true) {
+                            Get.toNamed('/gkm', arguments: data['token']);
                           }
                         } else {
                           Get.snackbar(
                             'Notification',
-                            "Registration Failed",
+                            "Registration Failed, ${data['message']['email']}",
                             colorText: Colors.white,
                             backgroundColor: Colors.red,
                             icon: const Icon(Icons.add_alert),

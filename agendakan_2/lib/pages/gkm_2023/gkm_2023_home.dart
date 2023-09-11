@@ -55,9 +55,15 @@ class _GKMHome2023State extends State<GKMHome2023> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Container(
-                            padding: EdgeInsets.only(left: 30, right: 30, top: 20),
-                            child: Image(image: AssetImage('images/2023_button_book_now.png')),
+                          Center(
+                            child: Container(
+                              padding: EdgeInsets.only(
+                                  left: MediaQuery.of(context).size.width / 64,
+                                  right: MediaQuery.of(context).size.width / 64,
+                                  top: 20),
+                              child:
+                                  const Image(image: AssetImage('images/2023_button_book_now.png')),
+                            ),
                           ),
                           Spacer(),
                           Container(
@@ -70,13 +76,18 @@ class _GKMHome2023State extends State<GKMHome2023> {
                                     childAspectRatio: 4 / 2,
                                     crossAxisSpacing: 40,
                                     mainAxisSpacing: 40),
-                                itemCount: 4,
+                                itemCount: data.length,
                                 itemBuilder: ((context, index) {
                                   return GestureDetector(
                                     onTap: () async {
                                       final _provider = GKM_2023_API();
                                       dynamic data = await _provider.getAllStatusTicket();
-                                      if (data['presale${index + 1}'] != 'buka') {
+                                      if (data['presale${index + 1}'] == 'belum_buka') {
+                                        Get.defaultDialog(
+                                            title: 'Peringatan!',
+                                            content: const Text(
+                                                'Penjualan untuk Ticket ini masih belum dibuka'));
+                                      } else if (data['presale${index + 1}'] != 'buka') {
                                         Get.defaultDialog(
                                             title: 'Peringatan!',
                                             content: const Text(
@@ -87,7 +98,7 @@ class _GKMHome2023State extends State<GKMHome2023> {
                                         //   Get.toNamed('/loginpage');
                                         // }else{
                                         data_store.write("jenis_tiket", 'presale${index + 1}');
-                                        Get.toNamed("/gkm_2023/ticket_form");
+                                        Get.toNamed("/gkm/ticket_form");
                                         // }
                                       }
                                     },
@@ -183,9 +194,9 @@ class _GKMHome2023State extends State<GKMHome2023> {
                   )),
                   onTap: () {
                     if (data_store.read("isAdmin") == 1) {
-                      Get.offAndToNamed('/gkm_2023/ticket_list');
+                      Get.offAndToNamed('/gkm/ticket_list');
                     } else {
-                      Get.offAndToNamed('/gkm_2023/ticket_list');
+                      Get.offAndToNamed('/gkm/ticket_list');
                     }
                   },
                 ),
@@ -202,11 +213,24 @@ class _GKMHome2023State extends State<GKMHome2023> {
                     data_store.remove('token');
                     data_store.remove('isAdmin');
                     data_store.remove('acara');
-                    Get.offAllNamed("/gkm_2023");
+                    Get.offAllNamed("/gkm");
                   },
                 ),
               ),
             ] else ...[
+              Container(
+                decoration: BoxDecoration(border: Border(top: BorderSide(), bottom: BorderSide())),
+                child: ListTile(
+                  title: Center(
+                      child: Text(
+                    "SIGN UP",
+                    style: TextStyle(fontSize: 20, fontFamily: 'Syne', fontWeight: FontWeight.w800),
+                  )),
+                  onTap: () {
+                    Get.offAllNamed("/register");
+                  },
+                ),
+              ),
               Container(
                 decoration: BoxDecoration(border: Border(top: BorderSide(), bottom: BorderSide())),
                 child: ListTile(
@@ -227,7 +251,7 @@ class _GKMHome2023State extends State<GKMHome2023> {
             ListTile(
               // alignment: Alignment.center,
               title: Text(
-                "© 2021 - 2022 agendakan.com | All right reserved",
+                "© 2022 - 2023 agendakan.com | All right reserved",
                 style: TextStyle(color: Colors.black),
               ),
             )
@@ -313,9 +337,9 @@ class _GKMHome2023State extends State<GKMHome2023> {
                       ),
                       onTap: () {
                         if (data_store.read("isAdmin") == 1) {
-                          Get.offAndToNamed('/gkm_2023/ticket_list');
+                          Get.offAndToNamed('/gkm/ticket_list');
                         } else {
-                          Get.toNamed('/gkm_2023/ticket_list');
+                          Get.toNamed('/gkm/ticket_list');
                         }
                       },
                     ),
@@ -342,7 +366,7 @@ class _GKMHome2023State extends State<GKMHome2023> {
                         data_store.remove('token');
                         data_store.remove('isAdmin');
                         data_store.remove('acara');
-                        Get.offAllNamed("/gkm_2023");
+                        Get.offAllNamed("/gkm");
                       },
                     ),
                     SizedBox(
@@ -404,50 +428,53 @@ class _GKMHome2023State extends State<GKMHome2023> {
             ),
           ],
           //Slider Image
-          Container(
-            height: MediaQuery.of(context).size.width / 2,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('images/gkm_2023_slider_bg.png'), fit: BoxFit.fill)),
-            child: CarouselSlider(
-                items: [
-                  'images/gkm_2023_slider_assets(1).jpg',
-                  'images/gkm_2023_slider_assets(2).jpg',
-                  'images/gkm_2023_slider_assets(3).jpg',
-                  'images/gkm_2023_slider_assets(4).jpg',
-                  'images/gkm_2023_slider_assets(5).jpg',
-                  'images/gkm_2023_slider_assets(6).jpg',
-                  'images/gkm_2023_slider_assets(7).jpg',
-                  'images/gkm_2023_slider_assets(8).jpg',
-                ].map((e) {
-                  return Builder(builder: (context) {
-                    return Container(
-                      padding: EdgeInsets.all(5),
-                      margin: EdgeInsets.symmetric(vertical: 15, horizontal: 5.0),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white),
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          image: DecorationImage(image: AssetImage(e), fit: BoxFit.cover)),
-                      // child: Image(
-                      //   image: AssetImage(e.toString()),
-                      //   fit: BoxFit.fill,
-                      // ),
-                      // color: Colors.blue,
-                      // width: MediaQuery.of(context).size.width,
-                    );
-                  });
-                }).toList(),
-                options: CarouselOptions(
-                  aspectRatio: 4,
-                  //enlargeCenterPage: true,
-                  viewportFraction: 0.3,
-                  scrollDirection: Axis.horizontal,
-                  autoPlay: true,
-                )),
-            // color: Color(0xff4181ED),
-            // width: MediaQuery.of(context).size.width,
-            //height: MediaQuery.of(context).size.height,
+          AspectRatio(
+            aspectRatio: 16 / 9,
+            child: Container(
+              height: MediaQuery.of(context).size.width / 2,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('images/gkm_2023_slider_bg.png'), fit: BoxFit.cover)),
+              child: CarouselSlider(
+                  items: [
+                    'images/gkm_2023_slider_assets(1).jpg',
+                    'images/gkm_2023_slider_assets(2).jpg',
+                    'images/gkm_2023_slider_assets(3).jpg',
+                    'images/gkm_2023_slider_assets(4).jpg',
+                    'images/gkm_2023_slider_assets(5).jpg',
+                    'images/gkm_2023_slider_assets(6).jpg',
+                    'images/gkm_2023_slider_assets(7).jpg',
+                    'images/gkm_2023_slider_assets(8).jpg',
+                  ].map((e) {
+                    return Builder(builder: (context) {
+                      return Container(
+                        padding: EdgeInsets.all(5),
+                        margin: EdgeInsets.symmetric(vertical: 15, horizontal: 5.0),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            image: DecorationImage(image: AssetImage(e), fit: BoxFit.cover)),
+                        // child: Image(
+                        //   image: AssetImage(e.toString()),
+                        //   fit: BoxFit.fill,
+                        // ),
+                        // color: Colors.blue,
+                        // width: MediaQuery.of(context).size.width,
+                      );
+                    });
+                  }).toList(),
+                  options: CarouselOptions(
+                    aspectRatio: 4,
+                    //enlargeCenterPage: true,
+                    viewportFraction: 0.3,
+                    scrollDirection: Axis.horizontal,
+                    autoPlay: true,
+                  )),
+              // color: Color(0xff4181ED),
+              // width: MediaQuery.of(context).size.width,
+              //height: MediaQuery.of(context).size.height,
+            ),
           ),
           //Guest Star
           // if (MediaQuery.of(context).size.width <= 1100) ...[
@@ -455,7 +482,7 @@ class _GKMHome2023State extends State<GKMHome2023> {
             ...[]
           else ...[
             AspectRatio(
-              aspectRatio: 16 / 8,
+              aspectRatio: 16 / 9,
               child: Container(
                 padding: EdgeInsets.all(20),
                 child: Column(
@@ -493,7 +520,8 @@ class _GKMHome2023State extends State<GKMHome2023> {
                                         decoration: BoxDecoration(
                                             color: Colors.white,
                                             image: DecorationImage(
-                                                image: AssetImage('images/fipfest_gs_comingsoon.png'),
+                                                image:
+                                                    AssetImage('images/fipfest_gs_comingsoon.png'),
                                                 fit: BoxFit.fill),
                                             borderRadius: BorderRadius.all(Radius.circular(20))),
                                       ),
@@ -517,7 +545,8 @@ class _GKMHome2023State extends State<GKMHome2023> {
                                         decoration: BoxDecoration(
                                             // color: Colors.white,
                                             image: DecorationImage(
-                                                image: AssetImage('images/fipfest_gs_comingsoon.png'),
+                                                image:
+                                                    AssetImage('images/fipfest_gs_comingsoon.png'),
                                                 fit: BoxFit.fill),
                                             borderRadius: BorderRadius.all(Radius.circular(20))),
                                       ),
@@ -542,7 +571,8 @@ class _GKMHome2023State extends State<GKMHome2023> {
                                         decoration: BoxDecoration(
                                             // color: Color(0xffF1F1F1),
                                             image: DecorationImage(
-                                                image: AssetImage('images/fipfest_gs_comingsoon.png'),
+                                                image:
+                                                    AssetImage('images/fipfest_gs_comingsoon.png'),
                                                 fit: BoxFit.scaleDown),
                                             borderRadius: BorderRadius.all(Radius.circular(20))),
                                       ),
@@ -564,220 +594,362 @@ class _GKMHome2023State extends State<GKMHome2023> {
                 // color: Color(0xffFFBD66),
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage("images/gkm_2023_gueststar_bg.png"), fit: BoxFit.fill)),
+                        image: AssetImage("images/gkm_2023_gueststar_bg.png"), fit: BoxFit.cover)),
                 // height: MediaQuery.of(context).size.height,
               ),
             ),
           ],
           //Deskripsi
           AspectRatio(
-            aspectRatio: 16 / 8,
+            aspectRatio: 16 / 9,
             child: Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("images/gkm_2023_desc_bg.png"), fit: BoxFit.fill)),
+                      image: AssetImage("images/gkm_2023_desc_bg.png"), fit: BoxFit.cover)),
             ),
           ),
-          
-
+          //Footer
+          AspectRatio(
+            aspectRatio: 16 / 3.5,
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    children: [
+                      const Spacer(),
+                      Container(
+                        width: MediaQuery.of(context).size.width / 8,
+                        // color: Colors.red,
+                        child: const Image(
+                            image: AssetImage("images/logo_agendakan_2023.png"),
+                            fit: BoxFit.fitWidth),
+                      ),
+                      const Spacer(),
+                      Container(
+                        width: MediaQuery.of(context).size.width / 8,
+                        // color: Colors.green,
+                        child: const Image(
+                            image: AssetImage("images/gkm_2023_logo.png"), fit: BoxFit.fitWidth),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width / 64,
+                  ),
+                  Row(
+                    children: [
+                      const Spacer(),
+                      GestureDetector(
+                        onTap: () async {
+                          if (await canLaunchUrl(Uri.parse(
+                              "https://instagram.com/agendakandotcom?igshid=MzRlODBiNWFlZA=="))) {
+                            await launchUrl(Uri.parse(
+                                "https://instagram.com/agendakandotcom?igshid=MzRlODBiNWFlZA=="));
+                          } else {
+                            throw 'Could not launch insta';
+                          }
+                        },
+                        child: Container(
+                          height: MediaQuery.of(context).size.width / 32,
+                          width: MediaQuery.of(context).size.width / 32,
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.5),
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            FontAwesomeIcons.instagram,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 32,
+                      ),
+                      GestureDetector(
+                        onTap: () async {
+                          if (await canLaunchUrl(Uri.parse("https://wa.me/6282338611163"))) {
+                            await launchUrl(Uri.parse("https://wa.me/6282338611163"));
+                          } else {
+                            throw 'Could not launch wa';
+                          }
+                        },
+                        child: Container(
+                          height: MediaQuery.of(context).size.width / 32,
+                          width: MediaQuery.of(context).size.width / 32,
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.5),
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            FontAwesomeIcons.whatsapp,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 60,
+                      ),
+                      const Spacer(),
+                      GestureDetector(
+                        onTap: () async {
+                          if (await canLaunchUrl(Uri.parse("https://instagram.com/gkmfebum"))) {
+                            await launchUrl(Uri.parse("https://instagram.com/gkmfebum"));
+                          } else {
+                            throw 'Could not launch insta';
+                          }
+                        },
+                        child: Container(
+                          height: MediaQuery.of(context).size.width / 32,
+                          width: MediaQuery.of(context).size.width / 32,
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.5),
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            FontAwesomeIcons.instagram,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 32,
+                      ),
+                      GestureDetector(
+                        onTap: () async {
+                          if (await canLaunchUrl(Uri.parse("https://wa.me/628163611129"))) {
+                            await launchUrl(Uri.parse("https://wa.me/628163611129"));
+                          } else {
+                            throw 'Could not launch wa';
+                          }
+                        },
+                        child: Container(
+                          height: MediaQuery.of(context).size.width / 32,
+                          width: MediaQuery.of(context).size.width / 32,
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.5),
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            FontAwesomeIcons.whatsapp,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      const Spacer(),
+                    ],
+                  )
+                ],
+              ),
+              decoration: const BoxDecoration(color: Colors.blue),
+            ),
+          ),
+          AspectRatio(
+            aspectRatio: 16 / 1,
+            child: Container(
+              child: Column(
+                children: const [
+                  FittedBox(
+                    child: Text(
+                      '© 2022 - 2023 agendakan.com | All right reserved',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    fit: BoxFit.fitWidth,
+                  )
+                ],
+              ),
+              decoration: const BoxDecoration(color: Colors.blue),
+            ),
+          ),
           //Footer
           if (MediaQuery.of(context).size.width <= 1100)
             ...[]
           else ...[
             //footer web
-            Container(
-              child: Row(
-                children: [
-                  Spacer(),
-                  Column(
-                    children: [
-                      Spacer(),
-                      Container(
-                        // color: Colors.white,
-                        height: 150,
-                        width: 150,
-                        child: Image(
-                          image: AssetImage("images/icon-01.png"),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.5),
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              FontAwesomeIcons.instagram,
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 28,
-                          ),
-                          Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.5),
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              FontAwesomeIcons.whatsapp,
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 28,
-                          ),
-                          Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.5),
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              FontAwesomeIcons.telegram,
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 28,
-                          ),
-                          Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.5),
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              FontAwesomeIcons.discord,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Spacer(),
-                    ],
-                  ),
-                  Spacer(),
-                  VerticalDivider(
-                    color: Colors.white,
-                    thickness: 1.5,
-                  ),
-                  Spacer(),
-                  Column(
-                    children: [
-                      Spacer(),
-                      Container(
-                        // color: Colors.white,
-                        height: 120,
-                        child: Image(
-                          image: AssetImage("images/gkm_logo_main_footer.png"),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        children: [
-                          InkWell(
-                            onTap: () async {
-                              if (await canLaunchUrl(Uri.parse(
-                                  "https://instagram.com/gkmfebum?igshid=YmMyMTA2M2Y="))) {
-                                await launchUrl(Uri.parse(
-                                    "https://instagram.com/gkmfebum?igshid=YmMyMTA2M2Y="));
-                              } else {
-                                throw 'Could not launch tiktok.com/@signaturee.festival';
-                              }
-                            },
-                            child: Container(
-                              height: 40,
-                              width: 40,
-                              decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.5),
-                                shape: BoxShape.circle,
-                              ),
-                              child: Icon(
-                                FontAwesomeIcons.instagram,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          // SizedBox(
-                          //   width: 28,
-                          // ),
-                          // Container(
-                          //   height: 40,
-                          //   width: 40,
-                          //   decoration: BoxDecoration(
-                          //     color: Colors.black.withOpacity(0.5),
-                          //     shape: BoxShape.circle,
-                          //   ),
-                          //   child: Icon(
-                          //     FontAwesomeIcons.whatsapp,
-                          //     color: Colors.white,
-                          //   ),
-                          // ),
-                          // SizedBox(
-                          //   width: 28,
-                          // ),
-                          // Container(
-                          //   height: 40,
-                          //   width: 40,
-                          //   decoration: BoxDecoration(
-                          //     color: Colors.black.withOpacity(0.5),
-                          //     shape: BoxShape.circle,
-                          //   ),
-                          //   child: Icon(
-                          //     FontAwesomeIcons.facebook,
-                          //     color: Colors.white,
-                          //   ),
-                          // ),
-                          // SizedBox(
-                          //   width: 28,
-                          // ),
-                          // Container(
-                          //   height: 40,
-                          //   width: 40,
-                          //   decoration: BoxDecoration(
-                          //     color: Colors.black.withOpacity(0.5),
-                          //     shape: BoxShape.circle,
-                          //   ),
-                          //   child: Icon(
-                          //     FontAwesomeIcons.youtube,
-                          //     color: Colors.white,
-                          //   ),
-                          // ),
-                        ],
-                      ),
-                      Spacer()
-                    ],
-                  ),
-                  Spacer()
-                ],
-              ),
-              padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
-              color: Color(0xff4181ED),
-              height: MediaQuery.of(context).size.height / 3,
-            ),
-            Container(
-              child: Column(children: [
-                Spacer(),
-                Center(child: Image(image: AssetImage("images/footer_bottom_reserved.png"))),
-                Spacer(),
-              ]),
-              // padding: EdgeInsets.fromLTRB(0, 40, 0, 40),
-              color: Color(0xff4181ED),
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 12,
-            )
+            // Container(
+            //   child: Row(
+            //     children: [
+            //       Spacer(),
+            //       Column(
+            //         children: [
+            //           Spacer(),
+            //           Container(
+            //             // color: Colors.white,
+            //             height: 150,
+            //             width: 150,
+            //             child: Image(
+            //               image: AssetImage("images/icon-01.png"),
+            //               fit: BoxFit.fill,
+            //             ),
+            //           ),
+            //           Row(
+            //             children: [
+            //               Container(
+            //                 height: 40,
+            //                 width: 40,
+            //                 decoration: BoxDecoration(
+            //                   color: Colors.black.withOpacity(0.5),
+            //                   shape: BoxShape.circle,
+            //                 ),
+            //                 child: Icon(
+            //                   FontAwesomeIcons.instagram,
+            //                   color: Colors.white,
+            //                 ),
+            //               ),
+            //               SizedBox(
+            //                 width: 28,
+            //               ),
+            //               Container(
+            //                 height: 40,
+            //                 width: 40,
+            //                 decoration: BoxDecoration(
+            //                   color: Colors.black.withOpacity(0.5),
+            //                   shape: BoxShape.circle,
+            //                 ),
+            //                 child: Icon(
+            //                   FontAwesomeIcons.whatsapp,
+            //                   color: Colors.white,
+            //                 ),
+            //               ),
+            //               SizedBox(
+            //                 width: 28,
+            //               ),
+            //               Container(
+            //                 height: 40,
+            //                 width: 40,
+            //                 decoration: BoxDecoration(
+            //                   color: Colors.black.withOpacity(0.5),
+            //                   shape: BoxShape.circle,
+            //                 ),
+            //                 child: Icon(
+            //                   FontAwesomeIcons.telegram,
+            //                   color: Colors.white,
+            //                 ),
+            //               ),
+            //               SizedBox(
+            //                 width: 28,
+            //               ),
+            //               Container(
+            //                 height: 40,
+            //                 width: 40,
+            //                 decoration: BoxDecoration(
+            //                   color: Colors.black.withOpacity(0.5),
+            //                   shape: BoxShape.circle,
+            //                 ),
+            //                 child: Icon(
+            //                   FontAwesomeIcons.discord,
+            //                   color: Colors.white,
+            //                 ),
+            //               ),
+            //             ],
+            //           ),
+            //           Spacer(),
+            //         ],
+            //       ),
+            //       Spacer(),
+            //       VerticalDivider(
+            //         color: Colors.white,
+            //         thickness: 1.5,
+            //       ),
+            //       Spacer(),
+            //       Column(
+            //         children: [
+            //           Spacer(),
+            //           Container(
+            //             // color: Colors.white,
+            //             height: 120,
+            //             child: Image(
+            //               image: AssetImage("images/gkm_logo_main_footer.png"),
+            //               fit: BoxFit.fill,
+            //             ),
+            //           ),
+            //           SizedBox(
+            //             height: 20,
+            //           ),
+            //           Row(
+            //             children: [
+            //               InkWell(
+            //                 onTap: () async {
+            //                   if (await canLaunchUrl(Uri.parse(
+            //                       "https://instagram.com/gkmfebum?igshid=YmMyMTA2M2Y="))) {
+            //                     await launchUrl(Uri.parse(
+            //                         "https://instagram.com/gkmfebum?igshid=YmMyMTA2M2Y="));
+            //                   } else {
+            //                     throw 'Could not launch tiktok.com/@signaturee.festival';
+            //                   }
+            //                 },
+            //                 child: Container(
+            //                   height: 40,
+            //                   width: 40,
+            //                   decoration: BoxDecoration(
+            //                     color: Colors.black.withOpacity(0.5),
+            //                     shape: BoxShape.circle,
+            //                   ),
+            //                   child: Icon(
+            //                     FontAwesomeIcons.instagram,
+            //                     color: Colors.white,
+            //                   ),
+            //                 ),
+            //               ),
+            //               // SizedBox(
+            //               //   width: 28,
+            //               // ),
+            //               // Container(
+            //               //   height: 40,
+            //               //   width: 40,
+            //               //   decoration: BoxDecoration(
+            //               //     color: Colors.black.withOpacity(0.5),
+            //               //     shape: BoxShape.circle,
+            //               //   ),
+            //               //   child: Icon(
+            //               //     FontAwesomeIcons.whatsapp,
+            //               //     color: Colors.white,
+            //               //   ),
+            //               // ),
+            //               // SizedBox(
+            //               //   width: 28,
+            //               // ),
+            //               // Container(
+            //               //   height: 40,
+            //               //   width: 40,
+            //               //   decoration: BoxDecoration(
+            //               //     color: Colors.black.withOpacity(0.5),
+            //               //     shape: BoxShape.circle,
+            //               //   ),
+            //               //   child: Icon(
+            //               //     FontAwesomeIcons.facebook,
+            //               //     color: Colors.white,
+            //               //   ),
+            //               // ),
+            //               // SizedBox(
+            //               //   width: 28,
+            //               // ),
+            //               // Container(
+            //               //   height: 40,
+            //               //   width: 40,
+            //               //   decoration: BoxDecoration(
+            //               //     color: Colors.black.withOpacity(0.5),
+            //               //     shape: BoxShape.circle,
+            //               //   ),
+            //               //   child: Icon(
+            //               //     FontAwesomeIcons.youtube,
+            //               //     color: Colors.white,
+            //               //   ),
+            //               // ),
+            //             ],
+            //           ),
+            //           Spacer()
+            //         ],
+            //       ),
+            //       Spacer()
+            //     ],
+            //   ),
+            //   padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+            //   color: Color(0xff4181ED),
+            //   height: MediaQuery.of(context).size.height / 3,
+            // ),
           ],
         ]),
       ),

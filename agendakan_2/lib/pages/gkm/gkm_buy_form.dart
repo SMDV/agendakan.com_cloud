@@ -108,7 +108,7 @@ class _GKM_FORM_TICKETState extends State<GKM_FORM_TICKET> {
                       children: [
                         Center(
                             child: Text(
-                          "Data Pembeli 1 : ",
+                          "Data Pemegang Tiket 1 : ",
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.bold),
                         )),
@@ -258,7 +258,7 @@ class _GKM_FORM_TICKETState extends State<GKM_FORM_TICKET> {
                           ),
                           Center(
                               child: Text(
-                            "Data Pembeli 2 : ",
+                            "Data Pemegang Tiket 2 : ",
                             style: TextStyle(
                                 fontSize: 15, fontWeight: FontWeight.bold),
                           )),
@@ -409,7 +409,7 @@ class _GKM_FORM_TICKETState extends State<GKM_FORM_TICKET> {
                           ),
                           Center(
                               child: Text(
-                            "Data Pembeli 3 : ",
+                            "Data Pemegang Tiket 3 : ",
                             style: TextStyle(
                                 fontSize: 15, fontWeight: FontWeight.bold),
                           )),
