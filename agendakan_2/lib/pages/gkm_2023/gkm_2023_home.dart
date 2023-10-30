@@ -16,7 +16,7 @@ class GKMHome2023 extends StatefulWidget {
 }
 
 class _GKMHome2023State extends State<GKMHome2023> {
-  final List<String> priceHardcode = ['*Rp. 139.000', 'Coming Soon', 'Coming Soon', 'Coming Soon'];
+  final List<String> priceHardcode = ['*Rp. 139.000', '*Rp. 159.000', 'Coming Soon', 'Coming Soon'];
   final data_store = GetStorage();
   GlobalKey<ScaffoldState> _key = GlobalKey();
   @override
@@ -118,7 +118,7 @@ class _GKMHome2023State extends State<GKMHome2023> {
                                           FittedBox(
                                               fit: BoxFit.cover,
                                               child: Text(
-                                                "PRESALE ${index + 1}",
+                                                "  PRESALE ${index + 1}  ",
                                                 style: const TextStyle(
                                                     fontFamily: 'Montserrat',
                                                     fontWeight: FontWeight.w800,
@@ -521,7 +521,7 @@ class _GKMHome2023State extends State<GKMHome2023> {
                                             color: Colors.white,
                                             image: DecorationImage(
                                                 image:
-                                                    AssetImage('images/fipfest_gs_comingsoon.png'),
+                                                    AssetImage('images/gkm_2023_gs_1.png'),
                                                 fit: BoxFit.fill),
                                             borderRadius: BorderRadius.all(Radius.circular(20))),
                                       ),
@@ -546,7 +546,7 @@ class _GKMHome2023State extends State<GKMHome2023> {
                                             // color: Colors.white,
                                             image: DecorationImage(
                                                 image:
-                                                    AssetImage('images/fipfest_gs_comingsoon.png'),
+                                                    AssetImage('images/gkm_2023_gs_2.png'),
                                                 fit: BoxFit.fill),
                                             borderRadius: BorderRadius.all(Radius.circular(20))),
                                       ),

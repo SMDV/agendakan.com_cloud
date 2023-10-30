@@ -18,10 +18,12 @@ class _GKM_2023_FORMState extends State<GKM_2023_FORM> {
   int jumlahTiket = 1;
   bool lockedForm = false;
   bool ktpDone = false;
+  bool VoucherDone = false;
   bool notLogin = false;
   bool isProcessRegister = true;
   List<DropdownMenuItem<int>> dropdownItems = [];
   TextEditingController noKtp = TextEditingController();
+  TextEditingController kodeVoucher = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final _formKeyAcc = GlobalKey<FormState>();
   TextEditingController emailAcc = TextEditingController();
@@ -370,13 +372,121 @@ class _GKM_2023_FORMState extends State<GKM_2023_FORM> {
                                           }
                                         }
                                       },
-                                child: const Text('Check ID')),
+                                child: const Text('   Check ID   ')),
                           ],
                         ),
                         const SizedBox(
                           height: 25,
                         ),
+                        // dev mute
                         if (ktpDone) ...[
+                        // if (true) ...[
+                          // Form Voucher
+                          const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              "Voucher ID (Opsional) :",
+                              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              Flexible(
+                                child: TextFormField(
+                                  enabled: !VoucherDone,
+                                  controller: kodeVoucher,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Enter code number';
+                                    }
+                                    return null;
+                                  },
+                                  maxLines: 1,
+                                  inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z]")),],
+                                  decoration: InputDecoration(
+                                    hintText: 'Enter code number',
+                                    prefixIcon: const Icon(Icons.document_scanner),
+                                    suffix: VoucherDone
+                                        ? const Icon(
+                                            Icons.check,
+                                            color: Colors.green,
+                                          )
+                                        : null,
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 25,
+                              ),
+                              ElevatedButton(
+                                  onPressed: VoucherDone
+                                      ? null
+                                      : () async {
+                                          if (kodeVoucher.text == '') {
+                                            Get.snackbar(
+                                              'Notification',
+                                              "Tolong isi kode Voucher terlebih dahulu",
+                                              colorText: Colors.white,
+                                              backgroundColor: Colors.red,
+                                              icon: const Icon(Icons.add_alert),
+                                            );
+                                          } else {
+                                            Get.snackbar(
+                                              'Notification',
+                                              "Kode Voucher ${kodeVoucher.text} tersedia!",
+                                              colorText: Colors.white,
+                                              backgroundColor: Colors.green,
+                                              icon: const Icon(Icons.add_alert),
+                                            );
+                                            // final _provider = GKM_2023_API();
+                                            // dynamic data = await _provider.cekID(noKtp.text);
+                                            // if (data != null) {
+                                            //   if (data['jumlah'] > 0) {
+                                            //     Get.snackbar(
+                                            //       'Notification',
+                                            //       "ID bisa digunakan untuk membeli ${data['jumlah']} ticket",
+                                            //       colorText: Colors.white,
+                                            //       backgroundColor: Colors.green,
+                                            //       icon: const Icon(Icons.add_alert),
+                                            //     );
+                                            //     for (var i = 1; i <= data['jumlah']; i++) {
+                                            //       if (i == 1) {
+                                            //         jumlahTiket = i;
+                                            //       }
+                                            //       var newItem = DropdownMenuItem(
+                                            //         child: Text(i.toString()),
+                                            //         value: i,
+                                            //       );
+                                            //       dropdownItems.add(newItem);
+                                            //     }
+                                            //     setState(() {
+                                            //       ktpDone = true;
+                                            //     });
+                                            //   } else {
+                                            //     Get.snackbar(
+                                            //       'Notification',
+                                            //       "ID tidak bisa digunakan untuk membeli ticket",
+                                            //       colorText: Colors.white,
+                                            //       backgroundColor: Colors.red,
+                                            //       icon: const Icon(Icons.add_alert),
+                                            //     );
+                                            //   }
+                                            // }
+                                          }
+                                        },
+                                  child: const Text('Check Kode')),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          // Form Pembelian
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -700,39 +810,19 @@ class _GKM_2023_FORMState extends State<GKM_2023_FORM> {
                                                   "jenis_tiket": data_store.read('jenis_tiket'),
                                                 });
                                               }
+
+                                              // voucher submit with voucher otw
+                                              // harus tambahin if voucher check done
+                                              // var form_data = {
+                                              //   'kodeVoucher':kodeVoucher.text,
+                                              //   'nomor_ktp': noKtp.text,
+                                              //   'data': data_send
+                                              // };
+
                                               var form_data = {
                                                 'nomor_ktp': noKtp.text,
                                                 'data': data_send
                                               };
-                                              // Get.defaultDialog(
-                                              //   title: 'Detail Pembelian Ticket',
-                                              //   content: Container(
-                                              //     child: Column(
-                                              //       children: [
-                                              //         Text('No KTP : ${noKtp.text}')
-
-                                              //       ],
-                                              //     ),
-                                              //   ),
-                                              //   onConfirm: () async {
-                                              //     final _provider = GKM_2023_API();
-                                              //     var data = await _provider.submitPembelian(
-                                              //         token, form_data);
-                                              //     print(data);
-                                              //     if (data != null) {
-                                              //       if (data['status'] == 'success') {
-                                              //         Get.snackbar(
-                                              //           'Notification',
-                                              //           "Checkout Successfull",
-                                              //           colorText: Colors.white,
-                                              //           backgroundColor: Colors.green,
-                                              //           icon: const Icon(Icons.add_alert),
-                                              //         );
-                                              //         Get.toNamed("/gkm_2023/ticket_list");
-                                              //       }
-                                              //     }
-                                              //   },
-                                              // );
 
                                               final _provider = GKM_2023_API();
                                               var data =
