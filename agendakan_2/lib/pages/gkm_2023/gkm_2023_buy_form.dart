@@ -380,12 +380,12 @@ class _GKM_2023_FORMState extends State<GKM_2023_FORM> {
                         ),
                         // dev mute
                         if (ktpDone) ...[
-                        // if (true) ...[
+                          // if (true) ...[
                           // Form Voucher
                           const Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              "Voucher ID (Opsional) :",
+                              "Kode Referral (Opsional) :",
                               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -405,7 +405,9 @@ class _GKM_2023_FORMState extends State<GKM_2023_FORM> {
                                     return null;
                                   },
                                   maxLines: 1,
-                                  inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z]")),],
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z]")),
+                                  ],
                                   decoration: InputDecoration(
                                     hintText: 'Enter code number',
                                     prefixIcon: const Icon(Icons.document_scanner),
@@ -431,21 +433,38 @@ class _GKM_2023_FORMState extends State<GKM_2023_FORM> {
                                           if (kodeVoucher.text == '') {
                                             Get.snackbar(
                                               'Notification',
-                                              "Tolong isi kode Voucher terlebih dahulu",
+                                              "Tolong isi kode referral terlebih dahulu",
                                               colorText: Colors.white,
                                               backgroundColor: Colors.red,
                                               icon: const Icon(Icons.add_alert),
                                             );
                                           } else {
-                                            Get.snackbar(
-                                              'Notification',
-                                              "Kode Voucher ${kodeVoucher.text} tersedia!",
-                                              colorText: Colors.white,
-                                              backgroundColor: Colors.green,
-                                              icon: const Icon(Icons.add_alert),
-                                            );
-                                            // final _provider = GKM_2023_API();
-                                            // dynamic data = await _provider.cekID(noKtp.text);
+                                            final _provider = GKM_2023_API();
+                                            dynamic data =
+                                                await _provider.cekRefCode(kodeVoucher.text);
+                                            Get.back(closeOverlays: true);
+                                            if (data != null) {
+                                              if (data['status'] == 'ok') {
+                                                Get.snackbar(
+                                                  'Notification',
+                                                  "Kode referral ${kodeVoucher.text} tersedia!",
+                                                  colorText: Colors.white,
+                                                  backgroundColor: Colors.green,
+                                                  icon: const Icon(Icons.add_alert),
+                                                );
+                                                setState(() {
+                                                  VoucherDone = true;
+                                                });
+                                              } else {
+                                                Get.snackbar(
+                                                  'Notification',
+                                                  "Kode tidak ditemukan!",
+                                                  colorText: Colors.white,
+                                                  backgroundColor: Colors.red,
+                                                  icon: const Icon(Icons.add_alert),
+                                                );
+                                              }
+                                            }
                                             // if (data != null) {
                                             //   if (data['jumlah'] > 0) {
                                             //     Get.snackbar(
@@ -813,16 +832,19 @@ class _GKM_2023_FORMState extends State<GKM_2023_FORM> {
 
                                               // voucher submit with voucher otw
                                               // harus tambahin if voucher check done
-                                              // var form_data = {
-                                              //   'kodeVoucher':kodeVoucher.text,
-                                              //   'nomor_ktp': noKtp.text,
-                                              //   'data': data_send
-                                              // };
-
-                                              var form_data = {
-                                                'nomor_ktp': noKtp.text,
-                                                'data': data_send
-                                              };
+                                              var form_data;
+                                              if (VoucherDone) {
+                                                form_data = {
+                                                  'kodeVoucher': kodeVoucher.text,
+                                                  'nomor_ktp': noKtp.text,
+                                                  'data': data_send
+                                                };
+                                              } else {
+                                                form_data = {
+                                                  'nomor_ktp': noKtp.text,
+                                                  'data': data_send
+                                                };
+                                              }
 
                                               final _provider = GKM_2023_API();
                                               var data =

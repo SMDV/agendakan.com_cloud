@@ -121,6 +121,28 @@ class GKM_2023_API {
     return responseJson;
   }
 
+  Future<dynamic> cekRefCode(String referralCode) async {
+    var responseJson;
+    Get.defaultDialog(title: "Mohon Menunggu", content: CircularProgressIndicator());
+    try {
+      var url_uri = Uri.parse(_baseUrl + "cek-kupon/" + referralCode); // ->
+
+      final response = await http.get(
+        url_uri,
+        headers: <String, String>{
+          "Content-Type": "application/json; charset=UTF-8",
+          // "Authorization": "Bearer " + token,
+        },
+      );
+      //final response = await http.get(url_uri);
+      responseJson = _response(response);
+    } on SocketException {
+      // throw Exception();
+    }
+    // Get.back();
+    return responseJson;
+  }
+
   Future<dynamic> submitPembelian(String token, var dataSend) async {
     var responseJson;
     //const test = data_send;
@@ -199,7 +221,6 @@ class GKM_2023_API {
     switch (response.statusCode) {
       case 200:
         var responseJson = json.decode(response.body.toString());
-        //print(responseJson);
         return responseJson;
       //return responseJson;
       // case 201:
@@ -259,7 +280,6 @@ class GKM_2023_API {
         return Exception(response.body.toString());
       default:
         var responseJson = json.decode(response.body.toString());
-        //print(responseJson);
         return responseJson;
       // throw FetchDataException(
       //     'Error occured while Communication with Server with StatusCode : ${response.statusCode}');
