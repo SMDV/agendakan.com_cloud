@@ -465,38 +465,6 @@ class _GKM_2023_FORMState extends State<GKM_2023_FORM> {
                                                 );
                                               }
                                             }
-                                            // if (data != null) {
-                                            //   if (data['jumlah'] > 0) {
-                                            //     Get.snackbar(
-                                            //       'Notification',
-                                            //       "ID bisa digunakan untuk membeli ${data['jumlah']} ticket",
-                                            //       colorText: Colors.white,
-                                            //       backgroundColor: Colors.green,
-                                            //       icon: const Icon(Icons.add_alert),
-                                            //     );
-                                            //     for (var i = 1; i <= data['jumlah']; i++) {
-                                            //       if (i == 1) {
-                                            //         jumlahTiket = i;
-                                            //       }
-                                            //       var newItem = DropdownMenuItem(
-                                            //         child: Text(i.toString()),
-                                            //         value: i,
-                                            //       );
-                                            //       dropdownItems.add(newItem);
-                                            //     }
-                                            //     setState(() {
-                                            //       ktpDone = true;
-                                            //     });
-                                            //   } else {
-                                            //     Get.snackbar(
-                                            //       'Notification',
-                                            //       "ID tidak bisa digunakan untuk membeli ticket",
-                                            //       colorText: Colors.white,
-                                            //       backgroundColor: Colors.red,
-                                            //       icon: const Icon(Icons.add_alert),
-                                            //     );
-                                            //   }
-                                            // }
                                           }
                                         },
                                   child: const Text('Check Kode')),
@@ -835,7 +803,7 @@ class _GKM_2023_FORMState extends State<GKM_2023_FORM> {
                                               var form_data;
                                               if (VoucherDone) {
                                                 form_data = {
-                                                  'kodeVoucher': kodeVoucher.text,
+                                                  'kode_voucher': kodeVoucher.text,
                                                   'nomor_ktp': noKtp.text,
                                                   'data': data_send
                                                 };
